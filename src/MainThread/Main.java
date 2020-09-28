@@ -1,4 +1,4 @@
-package sample;
+package MainThread;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -9,11 +9,11 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-
-        Parent root = FXMLLoader.load(getClass().getResource("../UIDesign/sample.fxml"));
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("../UIDesign/Edit_Pane.fxml"));
+        Scene scene = new Scene(root, 750, 500);
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 750 , 500));
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 

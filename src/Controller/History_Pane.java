@@ -1,19 +1,15 @@
 package Controller;
 
 import MainThread.FXML_Loader;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.layout.AnchorPane;
-
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-public class Searching_Pane_Controller implements Initializable {
+public class History_Pane {
+
     @FXML
     public void LoadSearchingButton(ActionEvent actionEvent) throws IOException {
         FXML_Loader loader = new FXML_Loader();
@@ -32,7 +28,7 @@ public class Searching_Pane_Controller implements Initializable {
     public void LoadHistoryButton(ActionEvent actionEvent) throws IOException {
         FXML_Loader loader = new FXML_Loader();
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(loader.getScene("Edit_Pane"));
+        stage.setScene(loader.getScene("History_Pane"));
     }
 
     @FXML
@@ -49,8 +45,4 @@ public class Searching_Pane_Controller implements Initializable {
         stage.setScene(loader.getScene("AboutUs_Pane"));
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
 }
