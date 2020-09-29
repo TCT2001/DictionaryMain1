@@ -1,15 +1,21 @@
 package MainThread;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-
+import javafx.scene.layout.Pane;
 import java.io.IOException;
+import java.net.URL;
 
 public class FXML_Loader {
+    private Pane view;
 
-    public Scene getScene(String fileName) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../UIDesign/" + fileName + ".fxml"));
-        return new Scene(root, 750, 500);
+    public Pane getPane(String fileName) {
+        URL url = Main.class.getResource("../UIDesign/" + fileName + ".fxml");
+        try {
+            view = FXMLLoader.load(url);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return view;
     }
+
 }
