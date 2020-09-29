@@ -7,18 +7,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Searching_Pane_Controller">
+<AnchorPane prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controller.Searching_Pane_Controller">
     <children>
         <BorderPane fx:id="BorderPaneId" layoutX="114.0" layoutY="55.0" prefHeight="420.0" prefWidth="577.0">
             <center>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <children>
-                        <TextField alignment="CENTER" layoutX="22.0" layoutY="14.0" prefHeight="30.0" prefWidth="177.0" text="Enter English Word">
+                        <TextField alignment="CENTER" layoutX="22.0" layoutY="14.0" prefHeight="30.0" prefWidth="177.0"
+                                   text="Enter English Word">
                             <font>
-                                <Font size="14.0" />
+                                <Font size="14.0"/>
                             </font>
                         </TextField>
-                        <ListView layoutX="22.0" layoutY="57.0" prefHeight="312.0" prefWidth="177.0" />
+                        <ListView layoutX="22.0" layoutY="57.0" prefHeight="312.0" prefWidth="177.0"/>
                     </children>
                 </AnchorPane>
             </center>
@@ -26,11 +28,16 @@
 
         <VBox layoutX="14.0" layoutY="69.0" prefHeight="210.0" prefWidth="100.0">
             <children>
-                <Button mnemonicParsing="false" onAction="#LoadSearchingButton" prefHeight="30.0" prefWidth="100.0" text="Search" textAlignment="CENTER" />
-                <Button mnemonicParsing="false" onAction="#LoadEditingButton" prefHeight="30.0" prefWidth="100.0" text="Edit" textAlignment="CENTER" />
-                <Button mnemonicParsing="false" onAction="#LoadHistoryButton" prefHeight="30.0" prefWidth="100.0" text="History" />
-                <Button mnemonicParsing="false" onAction="#LoadNoteButton" prefHeight="30.0" prefWidth="100.0" text="Note" />
-                <Button mnemonicParsing="false" onAction="#LoadAboutUsButton" prefHeight="30.0" prefWidth="100.0" text="About us" />
+                <Button mnemonicParsing="false" onAction="#LoadSearchingButton" prefHeight="30.0" prefWidth="100.0"
+                        text="Search" textAlignment="CENTER"/>
+                <Button mnemonicParsing="false" onAction="#LoadEditingButton" prefHeight="30.0" prefWidth="100.0"
+                        text="Edit" textAlignment="CENTER"/>
+                <Button mnemonicParsing="false" onAction="#LoadHistoryButton" prefHeight="30.0" prefWidth="100.0"
+                        text="History"/>
+                <Button mnemonicParsing="false" onAction="#LoadNoteButton" prefHeight="30.0" prefWidth="100.0"
+                        text="Note"/>
+                <Button mnemonicParsing="false" onAction="#LoadAboutUsButton" prefHeight="30.0" prefWidth="100.0"
+                        text="About us"/>
             </children>
         </VBox>
     </children>
