@@ -7,6 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import textfield.AutocompletionlTextField?>
 <AnchorPane prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="Controller.Searching_Pane_Controller">
     <children>
@@ -14,12 +15,12 @@
             <center>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <children>
-                        <TextField alignment="CENTER" layoutX="22.0" layoutY="14.0" prefHeight="30.0" prefWidth="177.0"
-                                   text="Enter English Word">
+                        <AutocompletionlTextField alignment="CENTER" layoutX="22.0" layoutY="14.0" prefHeight="30.0" prefWidth="177.0"
+                                                  text="Enter English Word">
                             <font>
                                 <Font size="14.0"/>
                             </font>
-                        </TextField>
+                        </AutocompletionlTextField>
                         <ListView layoutX="22.0" layoutY="57.0" prefHeight="312.0" prefWidth="177.0"/>
                     </children>
                 </AnchorPane>
