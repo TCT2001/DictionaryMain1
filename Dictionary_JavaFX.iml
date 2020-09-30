@@ -9,5 +9,9 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="lib" level="project" />
     <orderEntry type="library" name="sqlite-jdbc-3.32.3.2" level="project" />
+    <orderEntry type="library" name="jsapi" level="project" />
+    <orderEntry type="library" name="freetts" level="project" />
+    <orderEntry type="library" name="freetts-jsapi10" level="project" />
+    <orderEntry type="library" name="cmu_time_awb" level="project" />
   </component>
 </module>
