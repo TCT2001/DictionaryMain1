@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,21 +8,22 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import textfield.AutocompletionlTextField?>
-<AnchorPane prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="Controller.Searching_Pane_Controller">
+<?import textfield.MyTextField?>
+<AnchorPane prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Searching_Pane_Controller">
     <children>
         <BorderPane fx:id="BorderPaneId" layoutX="114.0" layoutY="55.0" prefHeight="420.0" prefWidth="577.0">
             <center>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <children>
-                        <AutocompletionlTextField alignment="CENTER" layoutX="22.0" layoutY="14.0" prefHeight="30.0" prefWidth="177.0"
-                                                  text="Enter English Word">
+                        <MyTextField fx:id="txtWord" alignment="CENTER" layoutX="22.0" layoutY="14.0" prefHeight="30.0" prefWidth="177.0" text="Enter English Word">
                             <font>
-                                <Font size="14.0"/>
+                                <Font size="14.0" />
                             </font>
-                        </AutocompletionlTextField>
-                        <ListView layoutX="22.0" layoutY="57.0" prefHeight="312.0" prefWidth="177.0"/>
+                        </MyTextField>
+                  <Text fx:id="txtTarget" layoutX="234.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" wrappingWidth="39.7294921875" />
+                  <Text fx:id="txtPronoune" layoutX="234.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
+                  <Text fx:id="txtDefinition" layoutX="234.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
+                  <Button fx:id="btnSpeck" onAction="#Speck" layoutX="395.0" layoutY="17.0" mnemonicParsing="false" text="speck" />
                     </children>
                 </AnchorPane>
             </center>
@@ -29,16 +31,11 @@
 
         <VBox layoutX="14.0" layoutY="69.0" prefHeight="210.0" prefWidth="100.0">
             <children>
-                <Button mnemonicParsing="false" onAction="#LoadSearchingButton" prefHeight="30.0" prefWidth="100.0"
-                        text="Search" textAlignment="CENTER"/>
-                <Button mnemonicParsing="false" onAction="#LoadEditingButton" prefHeight="30.0" prefWidth="100.0"
-                        text="Edit" textAlignment="CENTER"/>
-                <Button mnemonicParsing="false" onAction="#LoadHistoryButton" prefHeight="30.0" prefWidth="100.0"
-                        text="History"/>
-                <Button mnemonicParsing="false" onAction="#LoadNoteButton" prefHeight="30.0" prefWidth="100.0"
-                        text="Note"/>
-                <Button mnemonicParsing="false" onAction="#LoadAboutUsButton" prefHeight="30.0" prefWidth="100.0"
-                        text="About us"/>
+                <Button mnemonicParsing="false" onAction="#LoadSearchingButton" prefHeight="30.0" prefWidth="100.0" text="Search" textAlignment="CENTER" />
+                <Button mnemonicParsing="false" onAction="#LoadEditingButton" prefHeight="30.0" prefWidth="100.0" text="Edit" textAlignment="CENTER" />
+                <Button mnemonicParsing="false" onAction="#LoadHistoryButton" prefHeight="30.0" prefWidth="100.0" text="History" />
+                <Button mnemonicParsing="false" onAction="#LoadNoteButton" prefHeight="30.0" prefWidth="100.0" text="Note" />
+                <Button mnemonicParsing="false" onAction="#LoadAboutUsButton" prefHeight="30.0" prefWidth="100.0" text="About us" />
             </children>
         </VBox>
     </children>

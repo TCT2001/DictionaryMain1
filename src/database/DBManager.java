@@ -13,13 +13,9 @@ import java.util.List;
 public class DBManager {
     private static Connection connection = Database.getDatabase();
 
-    public void addWord(Word word) {
+    public static void addWord(Word word) {
         if (getExplain(word.getWord_target()) == "") {
-       /* String sql = "INSERT INTO " + Database.TABLENAME + "("
-                + Database.COLUME_WORD_TARGET + "," +
-                Database.COLUME_WORD_EXPLAIN + ") VALUE(?,?)";*/
             String sql = "INSERT INTO dictionary(word_target,word_explain) VALUES(?,?)";
-            //  PreparedStatement pstmt = null;
             try {
                 PreparedStatement pstmt = connection.prepareStatement(sql);
                 pstmt.setString(1, word.getWord_target());
@@ -31,7 +27,7 @@ public class DBManager {
         }
     }
 
-    public String getExplain(String target) {
+     public static String getExplain(String target) {
         String sql = "SELECT " + Database.COLUME_WORD_EXPLAIN + " FROM " +
                 Database.TABLENAME + " WHERE " + Database.COLUME_WORD_TARGET + " = ?";
         try {
@@ -50,10 +46,6 @@ public class DBManager {
 
     public List<Word> getAllWord() {
         String sql = "SELECT " + Database.COLUME_WORD_TARGET + ", " + Database.COLUME_WORD_EXPLAIN + " FROM " + Database.TABLENAME;
-        //query search tu
-        /*   String sql = "SELECT *\n" +
-                "  FROM dictionary\n" +
-                " WHERE instr(word_target, 'a') = 1";*/
         try {
             PreparedStatement pstmt = connection.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
