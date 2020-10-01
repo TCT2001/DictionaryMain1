@@ -10,6 +10,7 @@ public class Database {
     public static final String TABLENAME = "dictionary";
     public static final String COLUME_WORD_TARGET = "word_target";
     public static final String COLUME_WORD_EXPLAIN = "word_explain";
+    private static Connection connection = createNewDatabase("dictionary.db");
 
     private static void createTable(Connection connection) {
         String sql = "CREATE TABLE IF NOT EXISTS dictionary (\n"
@@ -40,7 +41,7 @@ public class Database {
     }
 
     public static Connection getDatabase() {
-        return createNewDatabase("dictionary.db");
+        return connection;
     }
 
 }

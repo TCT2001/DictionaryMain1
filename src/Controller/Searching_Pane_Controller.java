@@ -2,6 +2,7 @@ package Controller;
 
 import MainThread.FXML_Loader;
 import database.DictionanryDB;
+import database.NotesDB;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,6 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.Word;
 import speech.Speech;
 
 import java.io.IOException;
@@ -23,6 +25,7 @@ import java.util.ResourceBundle;
 
 public class Searching_Pane_Controller implements Initializable {
     private DictionanryDB dictionanryDB = new DictionanryDB();
+    private NotesDB notesDB = new NotesDB();
     @FXML
     private BorderPane BorderPaneId;
 
@@ -36,9 +39,16 @@ public class Searching_Pane_Controller implements Initializable {
     private Button btnSpeck;
     @FXML
     private TextField txtWord;
+    @FXML Button btnAddNotes;
 
 
     public Searching_Pane_Controller() {
+    }
+
+    @FXML
+    public void addNotes(ActionEvent actionEvent){
+        notesDB.addWord(new Word(txtTarget.getText(),txtDefinition.getText()));
+        btnAddNotes.setVisible(false);
     }
 
 
@@ -89,6 +99,7 @@ public class Searching_Pane_Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         if (txtTarget.getText().compareTo("") == 0) {
             btnSpeck.setVisible(false);
+            btnAddNotes.setVisible(false);
         }
         txtWord.setOnAction(actionEvent -> {
             String explain = dictionanryDB.getExplain(txtWord.getText());
@@ -110,10 +121,18 @@ public class Searching_Pane_Controller implements Initializable {
                     txtTarget.setText("");
                     txtDefinition.setText("");
                     btnSpeck.setVisible(false);
+                    if (btnAddNotes.isVisible()) {
+                        btnAddNotes.setVisible(false);
+                    }
                 } else {
                     txtTarget.setText(txtWord.getText());
                     txtDefinition.setText(explain);
                     //add thoi
+                    if (notesDB.getExplain(txtWord.getText()).equals("")){
+                        btnAddNotes.setVisible(true);
+                    }else {
+                        btnAddNotes.setVisible(false);
+                    }
                     btnSpeck.setVisible(true);
                 }
             }
