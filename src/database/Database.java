@@ -10,14 +10,19 @@ public class Database {
     public static final String TABLENAME = "dictionary";
     public static final String COLUME_WORD_TARGET = "word_target";
     public static final String COLUME_WORD_EXPLAIN = "word_explain";
+    private static Connection connection = createNewDatabase("dictionary.db");
 
     private static void createTable(Connection connection) {
         String sql = "CREATE TABLE IF NOT EXISTS dictionary (\n"
                 + "	word_target text PRIMARY KEY,\n"
                 + "	word_explain text NOT NULL);";
+        String sql2 = "CREATE TABLE IF NOT EXISTS notes (\n"
+                + "	word_target text PRIMARY KEY,\n"
+                + "	word_explain text NOT NULL);";
         try {
             Statement stmt = connection.createStatement();
             stmt.execute(sql);
+            stmt.execute(sql2);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -36,7 +41,7 @@ public class Database {
     }
 
     public static Connection getDatabase() {
-        return createNewDatabase("dictionary.db");
+        return connection;
     }
 
 }
