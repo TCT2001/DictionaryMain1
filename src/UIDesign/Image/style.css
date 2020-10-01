@@ -1,0 +1,71 @@
+.searchButton {
+    -fx-background-image: url("searching.png")
+}
+
+.searchButton:hover {
+    -fx-background-image: url("searching.png")
+}
+
+.searchButton:pressed {
+    -fx-background-image: url("searching.png")
+}
+
+.editButton {
+    -fx-background-image: url("edit.png")
+}
+
+.editButton:hover {
+    -fx-background-image: url("edit.png")
+}
+
+.editButton:pressed {
+    -fx-background-image: url("edit.png")
+}
+
+.historyButton {
+    -fx-background-image: url("history.png")
+}
+
+.historyButton:hover {
+    -fx-background-image: url("history.png")
+}
+
+.historyButton:pressed {
+    -fx-background-image: url("history.png")
+}
+
+.noteButton {
+    -fx-background-image: url("Note.png")
+}
+
+.noteButton:hover {
+    -fx-background-image: url("Note.png")
+}
+
+.noteButton:pressed {
+    -fx-background-image: url("Note.png")
+}
+
+.aboutUsButton {
+    -fx-background-image: url("aboutUs.png")
+}
+
+.aboutUsButton:hover {
+    -fx-background-image: url("aboutUs.png")
+}
+
+.aboutUsButton:pressed {
+    -fx-background-image: url("aboutUs.png")
+}
+
+.speechButton {
+    -fx-background-image: url("voice.png");
+}
+
+.speechButton:hover {
+    -fx-background-image: url("voice.png");
+}
+
+.speechButton:pressed {
+    -fx-background-image: url("voice.png");
+}

@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -20,14 +22,15 @@ import speech.Speech;
 import javax.speech.AudioException;
 import javax.speech.EngineException;
 import java.beans.PropertyVetoException;
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Searching_Pane_Controller implements Initializable {
     @FXML
     private BorderPane BorderPaneId;
-
     @FXML
     private Text txtTarget;
     @FXML
@@ -35,10 +38,19 @@ public class Searching_Pane_Controller implements Initializable {
     @FXML
     private Text txtDefinition;
     @FXML
-    private Button btnSpeck;
+    private Button speechButton;
     @FXML
     private TextField txtWord;
-
+    @FXML
+    private Button searchButton;
+    @FXML
+    private Button editButton;
+    @FXML
+    private Button historyButton;
+    @FXML
+    private Button noteButton;
+    @FXML
+    private Button aboutUsButton;
 
     public Searching_Pane_Controller() {
     }
@@ -89,8 +101,9 @@ public class Searching_Pane_Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         if (txtTarget.getText().compareTo("") == 0) {
-            btnSpeck.setVisible(false);
+            speechButton.setVisible(false);
         }
         txtWord.setOnAction(actionEvent -> {
             String explain = DBManager.getExplain(txtWord.getText());
@@ -112,12 +125,12 @@ public class Searching_Pane_Controller implements Initializable {
                     //tam thoi thi an het text di
                     txtTarget.setText("");
                     txtDefinition.setText("");
-                    btnSpeck.setVisible(false);
+                    speechButton.setVisible(false);
                 } else {
                     txtTarget.setText(txtWord.getText());
                     txtDefinition.setText(explain);
                     //add thoi
-                    btnSpeck.setVisible(true);
+                    speechButton.setVisible(true);
                 }
             }
         });
