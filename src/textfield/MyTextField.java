@@ -1,5 +1,5 @@
 package textfield;
-import database.DBManager;
+import database.DictionanryDB;
 import javafx.geometry.Side;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.CustomMenuItem;
@@ -8,21 +8,17 @@ import javafx.scene.control.TextField;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
+//custom textfield from stackoverflow
+//https://stackoverflow.com/questions/36861056/javafx-textfield-auto-suggestions
 public class MyTextField extends TextField {
-
-
-    private final SortedSet<String> entries;
+    private DictionanryDB dictionanryDB = new DictionanryDB();
     //popup GUI
     private ContextMenu entriesPopup;
 
     public MyTextField() {
         super();
-        this.entries = new TreeSet<>();
         this.entriesPopup = new ContextMenu();
-
         setListner();
     }
     /**
@@ -36,7 +32,7 @@ public class MyTextField extends TextField {
             if (enteredText == null || enteredText.isEmpty()) {
                 entriesPopup.hide();
             } else {
-                List<String> filteredEntries = DBManager.getAllWordHint(enteredText);
+                List<String> filteredEntries = dictionanryDB.getAllWordHint(enteredText);
                 //some suggestions are found
                 if (!filteredEntries.isEmpty()) {
                     //build popup - list of "CustomMenuItem"
@@ -89,11 +85,4 @@ public class MyTextField extends TextField {
         entriesPopup.getItems().addAll(menuItems);
     }
 
-
-    /**
-     * Get the existing set of autocomplete entries.
-     *
-     * @return The existing autocomplete entries.
-     */
-    public SortedSet<String> getEntries() { return entries; }
 }

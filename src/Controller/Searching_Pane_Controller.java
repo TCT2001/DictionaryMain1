@@ -1,7 +1,7 @@
 package Controller;
 
 import MainThread.FXML_Loader;
-import database.DBManager;
+import database.DictionanryDB;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,14 +17,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import speech.Speech;
 
-import javax.speech.AudioException;
-import javax.speech.EngineException;
-import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Searching_Pane_Controller implements Initializable {
+    private DictionanryDB dictionanryDB = new DictionanryDB();
     @FXML
     private BorderPane BorderPaneId;
 
@@ -93,12 +91,11 @@ public class Searching_Pane_Controller implements Initializable {
             btnSpeck.setVisible(false);
         }
         txtWord.setOnAction(actionEvent -> {
-            String explain = DBManager.getExplain(txtWord.getText());
+            String explain = dictionanryDB.getExplain(txtWord.getText());
            if (explain.compareTo("") == 0) {
                //dung api search tu
            } else {
                txtTarget.setText(txtWord.getText());
-               txtWord.setText("");
                txtDefinition.setText(explain);
                //add thoi
            }
@@ -106,8 +103,8 @@ public class Searching_Pane_Controller implements Initializable {
 
         txtWord.textProperty().addListener((observable, oldValue, newValue) -> {
             if (oldValue.compareTo(newValue) != 0) {
-                String explain = DBManager.getExplain(txtWord.getText());
-                if (explain.compareTo("") == 0 || newValue.compareTo("") == 0) {
+                String explain = dictionanryDB.getExplain(txtWord.getText());
+                if (explain.compareTo("") == 0 || newValue.trim().compareTo("") == 0) {
                     //dung api search tu
                     //tam thoi thi an het text di
                     txtTarget.setText("");
