@@ -15,44 +15,36 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Searching_Pane_Controller">
     <children>
-        <BorderPane fx:id="BorderPaneId" layoutX="114.0" layoutY="55.0" prefHeight="420.0" prefWidth="577.0">
+        <BorderPane fx:id="BorderPaneId" layoutX="114.0" layoutY="55.0" prefHeight="320.0" prefWidth="610.0">
             <center>
-                <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                <AnchorPane prefHeight="325.0" prefWidth="582.0" BorderPane.alignment="CENTER">
                     <children>
-                        <!--                        <MyTextField fx:id="txtWord" alignment="CENTER" layoutX="22.0" layoutY="14.0" prefHeight="30.0" prefWidth="177.0" text="Enter English Word">-->
-                        <!--                            <font>-->
-                        <!--                                <Font size="14.0" />-->
-                        <!--                            </font>-->
-                        <!--                        </MyTextField>-->
-                        <TextField fx:id="txtWord" alignment="CENTER" layoutX="24.0" layoutY="7.0" prefHeight="30.0" prefWidth="177.0" text="Enter English Word">
-                            <font>
-                                <Font size="14.0" />
-                            </font>
-                        </TextField>
+<!--                        <MyTextField fx:id="txtWord" alignment="CENTER" layoutX="22.0" layoutY="14.0" prefHeight="30.0"-->
+<!--                                     prefWidth="177.0" text="Enter English Word">-->
+<!--                            <font>-->
+<!--                                <Font size="14.0"/>-->
+<!--                            </font>-->
+<!--                        </MyTextField>-->
+                                                                        <TextField fx:id="txtWord" alignment="CENTER" layoutX="24.0" layoutY="6.0" prefHeight="30.0" prefWidth="195.0" text="Enter English Word">
+                                                                            <font>
+                                                                                <Font size="14.0" />
+                                                                            </font>
+                                                                        </TextField>
                         <Text fx:id="txtTarget" layoutX="234.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="297.7294921875" />
                         <Text fx:id="txtDefinition" layoutX="234.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#74a174" height="326.0" layoutY="-1.0" stroke="#74a174" strokeType="INSIDE" width="24.0" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#74a174" height="16.0" layoutY="-7.0" stroke="#74a174" strokeType="INSIDE" width="587.0" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#74a174" height="16.0" layoutX="1.0" layoutY="309.0" stroke="#74a174" strokeType="INSIDE" width="587.0" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#74a174" height="326.0" layoutX="564.0" layoutY="-3.0" stroke="#74a174" strokeType="INSIDE" width="24.0" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#74a174" height="323.0" layoutX="201.0" stroke="#74a174" strokeType="INSIDE" width="32.0" />
-                  <Button fx:id="speechButton" layoutX="539.0" layoutY="9.0" mnemonicParsing="false" onAction="#Speck" prefHeight="25.0" prefWidth="25.0" styleClass="speechButton" stylesheets="@Image/style.css">
-                     <tooltip>
-                        <Tooltip text="Speak" />
-                     </tooltip></Button>
-                  <ImageView fitHeight="83.0" fitWidth="153.0" layoutX="281.0" layoutY="343.0" pickOnBounds="true" preserveRatio="true" />
-                    <Text layoutX="177.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="© Copyright 2020. All Rights Reserved." />
-                    <Text layoutX="469.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Developed by Team Seven" />
-                  <ImageView fitHeight="40.0" fitWidth="65.0" layoutX="260.0" layoutY="375.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Image/dictionary.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="40.0" fitWidth="65.0" layoutX="507.0" layoutY="375.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Image/dic2.png" />
-                     </image>
-                  </ImageView>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#74a174" height="323.0" layoutX="219.0" layoutY="1.0" stroke="#74a174" strokeType="INSIDE" width="9.0" />
+                        <Button fx:id="speechButton" layoutX="194.0" layoutY="9.0" mnemonicParsing="false" onAction="#Speck" prefHeight="25.0" prefWidth="25.0" styleClass="speechButton" stylesheets="@Image/style.css">
+                            <tooltip>
+                                <Tooltip text="Speak" />
+                            </tooltip>
+                        </Button>
+                        <Button fx:id="note" layoutX="539.0" layoutY="9.0" mnemonicParsing="false" onAction="#clickNote" prefHeight="25.0" prefWidth="25.0" styleClass="note" stylesheets="@Image/style.css" />
+                        <Button fx:id="edit" layoutX="489.0" layoutY="9.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="edit" stylesheets="@Image/style.css" />
+                        <Button fx:id="delete" layoutX="514.0" layoutY="9.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="delete" stylesheets="@Image/style.css" />
                     </children>
                 </AnchorPane>
             </center>
@@ -63,35 +55,47 @@
             </font>
         </Text>
         <Text layoutX="14.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Object Oriented Programming" />
-        <Button fx:id="searchButton" layoutX="32.0" layoutY="61.0" mnemonicParsing="false" onAction="#LoadSearchingButton" prefHeight="30.0" prefWidth="50.0" styleClass="searchButton" stylesheets="@Image/style.css" textAlignment="CENTER">
-         <tooltip>
-            <Tooltip text="Search" />
-         </tooltip></Button>
-        <Button fx:id="editButton" layoutX="32.0" layoutY="119.0" mnemonicParsing="false" onAction="#LoadEditingButton" prefHeight="30.0" prefWidth="50.0" styleClass="editButton" stylesheets="@Image/style.css" textAlignment="CENTER">
-         <tooltip>
-            <Tooltip text="Edit" />
-         </tooltip></Button>
-        <Button fx:id="historyButton" layoutX="32.0" layoutY="187.0" mnemonicParsing="false" onAction="#LoadHistoryButton" prefHeight="30.0" prefWidth="50.0" styleClass="historyButton" stylesheets="@Image/style.css">
-         <tooltip>
-            <Tooltip text="History" />
-         </tooltip></Button>
-        <Button fx:id="noteButton" layoutX="32.0" layoutY="256.0" mnemonicParsing="false" onAction="#LoadNoteButton" prefHeight="30.0" prefWidth="50.0" styleClass="noteButton" stylesheets="@Image/style.css">
-         <tooltip>
-            <Tooltip text="Hightlight" />
-         </tooltip></Button>
-        <Button fx:id="aboutUsButton" layoutX="32.0" layoutY="321.0" mnemonicParsing="false" onAction="#LoadAboutUsButton" prefHeight="30.0" prefWidth="50.0" styleClass="aboutUsButton" stylesheets="@Image/style.css">
-         <tooltip>
-            <Tooltip text="About Us" />
-         </tooltip></Button>
-      <ImageView fitHeight="32.0" fitWidth="40.0" layoutX="175.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Image/dictionary1.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="40.0" fitWidth="65.0" layoutX="59.0" layoutY="427.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Image/dic1.png" />
-         </image>
-      </ImageView>
+        <Button fx:id="searchButton" layoutX="32.0" layoutY="74.0" mnemonicParsing="false" onAction="#LoadSearchingButton" prefHeight="30.0" prefWidth="50.0" styleClass="searchButton" stylesheets="@Image/style.css" textAlignment="CENTER">
+            <tooltip>
+                <Tooltip text="Search" />
+            </tooltip>
+        </Button>
+        <Button fx:id="historyButton" layoutX="32.0" layoutY="152.0" mnemonicParsing="false" onAction="#LoadHistoryButton" prefHeight="30.0" prefWidth="50.0" styleClass="historyButton" stylesheets="@Image/style.css">
+            <tooltip>
+                <Tooltip text="History" />
+            </tooltip>
+        </Button>
+        <Button fx:id="noteButton" layoutX="32.0" layoutY="235.0" mnemonicParsing="false" onAction="#LoadNoteButton" prefHeight="30.0" prefWidth="50.0" styleClass="noteButton" stylesheets="@Image/style.css">
+            <tooltip>
+                <Tooltip text="Hightlight" />
+            </tooltip>
+        </Button>
+        <Button fx:id="aboutUsButton" layoutX="32.0" layoutY="319.0" mnemonicParsing="false" onAction="#LoadAboutUsButton" prefHeight="30.0" prefWidth="50.0" styleClass="aboutUsButton" stylesheets="@Image/style.css">
+            <tooltip>
+                <Tooltip text="About Us" />
+            </tooltip>
+        </Button>
+        <ImageView fitHeight="32.0" fitWidth="40.0" layoutX="175.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@Image/dictionary1.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="40.0" fitWidth="65.0" layoutX="59.0" layoutY="427.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@Image/dic1.png" />
+            </image>
+        </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="65.0" layoutX="383.0" layoutY="427.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@Image/dictionary.png" />
+                </image>
+            </ImageView>
+            <Text layoutX="300.0" layoutY="414.0" strokeType="OUTSIDE" strokeWidth="0.0" text="© Copyright 2020. All Rights Reserved." />
+            <Text layoutX="597.0" layoutY="414.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Developed by Team Seven" />
+            <ImageView fitHeight="40.0" fitWidth="65.0" layoutX="643.0" layoutY="427.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@Image/dic2.png" />
+                </image>
+            </ImageView>
     </children>
 </AnchorPane>

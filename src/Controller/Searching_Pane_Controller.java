@@ -1,30 +1,23 @@
 package Controller;
 
 import MainThread.FXML_Loader;
-import database.DBManager;
+import database.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import speech.Speech;
 
-import javax.speech.AudioException;
-import javax.speech.EngineException;
-import java.beans.PropertyVetoException;
-import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -51,6 +44,12 @@ public class Searching_Pane_Controller implements Initializable {
     private Button noteButton;
     @FXML
     private Button aboutUsButton;
+    @FXML
+    private Button note;
+    @FXML
+    private Button edit;
+    @FXML
+    private Button delete;
 
     public Searching_Pane_Controller() {
     }
@@ -104,9 +103,12 @@ public class Searching_Pane_Controller implements Initializable {
 
         if (txtTarget.getText().compareTo("") == 0) {
             speechButton.setVisible(false);
+            note.setVisible(false);
+            delete.setVisible(false);
+            edit.setVisible(false);
         }
         txtWord.setOnAction(actionEvent -> {
-            String explain = DBManager.getExplain(txtWord.getText());
+            String explain = Table.getExplain(txtWord.getText());
            if (explain.compareTo("") == 0) {
                //dung api search tu
            } else {
@@ -119,21 +121,43 @@ public class Searching_Pane_Controller implements Initializable {
 
         txtWord.textProperty().addListener((observable, oldValue, newValue) -> {
             if (oldValue.compareTo(newValue) != 0) {
-                String explain = DBManager.getExplain(txtWord.getText());
+                String explain = Table.getExplain(txtWord.getText());
                 if (explain.compareTo("") == 0 || newValue.compareTo("") == 0) {
                     //dung api search tu
                     //tam thoi thi an het text di
                     txtTarget.setText("");
                     txtDefinition.setText("");
                     speechButton.setVisible(false);
+                    note.setVisible(false);
+                    delete.setVisible(false);
+                    edit.setVisible(false);
                 } else {
                     txtTarget.setText(txtWord.getText());
                     txtDefinition.setText(explain);
                     //add thoi
                     speechButton.setVisible(true);
+                    note.setVisible(true);
+                    delete.setVisible(true);
+                    edit.setVisible(true);
                 }
             }
         });
 
     }
+
+    @FXML
+    public void clickNote(ActionEvent actionEvent){
+        //TODO
+    }
+
+    @FXML
+    public void clickEdit(ActionEvent actionEvent){
+        //TODO
+    }
+
+    @FXML
+    public void clickDelete(ActionEvent actionEvent){
+        //TODO
+    }
+
 }

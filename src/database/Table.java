@@ -11,8 +11,8 @@ import java.util.List;
 
 public class Table {
     //CRUD
-    protected Connection connection = Database.getDatabase();
-    protected String table = "";
+    protected static Connection connection = Database.getDatabase();
+    protected static String table = "";
     //c
     public void addWord(Word word) {
         if (getExplain(word.getWord_target()).equals("")) {
@@ -28,7 +28,7 @@ public class Table {
         }
     }
     //r
-    public String getExplain(String target) {
+    public static String getExplain(String target) {
         String sql = "SELECT " + Database.COLUME_WORD_EXPLAIN + " FROM " +
                 table + " WHERE " + Database.COLUME_WORD_TARGET + " = ?";
         try {
