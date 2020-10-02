@@ -32,7 +32,7 @@ public class MyTextField extends TextField {
             if (enteredText == null || enteredText.isEmpty()) {
                 entriesPopup.hide();
             } else {
-                List<String> filteredEntries = dictionanryDB.getAllWordHint(enteredText);
+                List<String> filteredEntries = dictionanryDB.getAllWordHint(enteredText.toLowerCase());
                 //some suggestions are found
                 if (!filteredEntries.isEmpty()) {
                     //build popup - list of "CustomMenuItem"

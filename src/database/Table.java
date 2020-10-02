@@ -11,11 +11,13 @@ import java.util.List;
 
 public class Table {
     //CRUD
-    protected static Connection connection = Database.getDatabase();
-    protected static String table = "";
+    protected Connection connection = Database.getDatabase();
+    protected String table = "";
     //c
     public void addWord(Word word) {
+        System.out.println("add");
         if (getExplain(word.getWord_target()).equals("")) {
+
             String sql = "INSERT INTO "+table+"(word_target,word_explain) VALUES(?,?)";
             try {
                 PreparedStatement pstmt = connection.prepareStatement(sql);
@@ -28,7 +30,7 @@ public class Table {
         }
     }
     //r
-    public static String getExplain(String target) {
+    public String getExplain(String target) {
         String sql = "SELECT " + Database.COLUME_WORD_EXPLAIN + " FROM " +
                 table + " WHERE " + Database.COLUME_WORD_TARGET + " = ?";
         try {
@@ -79,13 +81,5 @@ public class Table {
         }
     }
     //d
-    public void deleteWord(String tager) {
-        String sql = "DELETE FROM " + table + " WHERE " + Database.COLUME_WORD_TARGET + " = ?";
-        try {
-            PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.setString(1, tager);
-            pstmt.executeUpdate();
-        } catch (SQLException e) { }
-    }
 
 }

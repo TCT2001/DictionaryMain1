@@ -19,10 +19,14 @@ public class Database {
         String sql2 = "CREATE TABLE IF NOT EXISTS notes (\n"
                 + "	word_target text PRIMARY KEY,\n"
                 + "	word_explain text NOT NULL);";
+        String sql3 = "CREATE TABLE IF NOT EXISTS histories (\n"
+                + "	word_target text PRIMARY KEY,\n"
+                + "	word_explain text NOT NULL);";
         try {
             Statement stmt = connection.createStatement();
             stmt.execute(sql);
             stmt.execute(sql2);
+            stmt.execute(sql3);
         } catch (SQLException e) {
             e.printStackTrace();
         }

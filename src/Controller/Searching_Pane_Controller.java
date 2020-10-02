@@ -15,6 +15,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.Word;
 import speech.Speech;
 
 import java.io.IOException;
@@ -22,6 +23,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Searching_Pane_Controller implements Initializable {
+    private DictionanryDB dictionanryDB = new DictionanryDB();
+    private NotesDB notesDB = new NotesDB();
+
     @FXML
     private BorderPane BorderPaneId;
     @FXML
@@ -108,7 +112,7 @@ public class Searching_Pane_Controller implements Initializable {
             edit.setVisible(false);
         }
         txtWord.setOnAction(actionEvent -> {
-            String explain = Table.getExplain(txtWord.getText());
+            String explain = dictionanryDB.getExplain(txtWord.getText());
            if (explain.compareTo("") == 0) {
                //dung api search tu
            } else {
@@ -121,7 +125,7 @@ public class Searching_Pane_Controller implements Initializable {
 
         txtWord.textProperty().addListener((observable, oldValue, newValue) -> {
             if (oldValue.compareTo(newValue) != 0) {
-                String explain = Table.getExplain(txtWord.getText());
+                String explain = dictionanryDB.getExplain(txtWord.getText());
                 if (explain.compareTo("") == 0 || newValue.compareTo("") == 0) {
                     //dung api search tu
                     //tam thoi thi an het text di
@@ -131,12 +135,15 @@ public class Searching_Pane_Controller implements Initializable {
                     note.setVisible(false);
                     delete.setVisible(false);
                     edit.setVisible(false);
+
                 } else {
                     txtTarget.setText(txtWord.getText());
                     txtDefinition.setText(explain);
                     //add thoi
                     speechButton.setVisible(true);
-                    note.setVisible(true);
+                    if (notesDB.getExplain(txtTarget.getText()).compareTo("") == 0) {
+                        note.setVisible(true);
+                    } else note.setVisible(false);
                     delete.setVisible(true);
                     edit.setVisible(true);
                 }
@@ -147,7 +154,8 @@ public class Searching_Pane_Controller implements Initializable {
 
     @FXML
     public void clickNote(ActionEvent actionEvent){
-        //TODO
+        notesDB.addWord(new Word(txtTarget.getText(),txtDefinition.getText()));
+        note.setVisible(false);
     }
 
     @FXML
