@@ -1,7 +1,7 @@
 package Controller;
 
 import MainThread.FXML_Loader;
-import database.DBManager;
+import database.DictionanryDB;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -29,6 +29,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Searching_Pane_Controller implements Initializable {
+    private DictionanryDB dictionanryDB = new DictionanryDB();
     @FXML
     private BorderPane BorderPaneId;
     @FXML
@@ -106,7 +107,7 @@ public class Searching_Pane_Controller implements Initializable {
             speechButton.setVisible(false);
         }
         txtWord.setOnAction(actionEvent -> {
-            String explain = DBManager.getExplain(txtWord.getText());
+            String explain = dictionanryDB.getExplain(txtWord.getText());
            if (explain.compareTo("") == 0) {
                //dung api search tu
            } else {
@@ -119,7 +120,7 @@ public class Searching_Pane_Controller implements Initializable {
 
         txtWord.textProperty().addListener((observable, oldValue, newValue) -> {
             if (oldValue.compareTo(newValue) != 0) {
-                String explain = DBManager.getExplain(txtWord.getText());
+                String explain = dictionanryDB.getExplain(txtWord.getText());
                 if (explain.compareTo("") == 0 || newValue.compareTo("") == 0) {
                     //dung api search tu
                     //tam thoi thi an het text di

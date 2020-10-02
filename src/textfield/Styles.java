@@ -6,6 +6,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
+
 public class Styles {
     public static TextFlow buildTextFlow(String text, String filter) {
         int filterIndex = text.toLowerCase().indexOf(filter.toLowerCase());
