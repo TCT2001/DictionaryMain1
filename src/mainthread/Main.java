@@ -1,21 +1,17 @@
-package MainThread;
+package mainthread;
 
-import database.NotesDB;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.Word;
-
-import java.util.List;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("../UIDesign/Searching_Pane.fxml"));
-        //Parent root = FXMLLoader.load(getClass().getResource("../UIDesign/History_Pane.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../uidesign/Searching_Pane.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("../uidesign/History_Pane.fxml"));
         Scene scene = new Scene(root, 750, 500);
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(scene);

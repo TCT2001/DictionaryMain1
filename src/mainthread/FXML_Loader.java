@@ -1,4 +1,4 @@
-package MainThread;
+package mainthread;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
@@ -9,7 +9,7 @@ public class FXML_Loader {
     private Pane view;
 
     public Pane getPane(String fileName) {
-        URL url = Main.class.getResource("../UIDesign/" + fileName + ".fxml");
+        URL url = Main.class.getResource("../uidesign/" + fileName + ".fxml");
         try {
             view = FXMLLoader.load(url);
         } catch (IOException e) {

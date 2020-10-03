@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import database.NotesDB;
 import javafx.collections.FXCollections;
@@ -6,18 +6,13 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Cell;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Note_Pane_Controller implements Initializable {

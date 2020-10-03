@@ -1,6 +1,5 @@
-package Controller;
-
-import MainThread.FXML_Loader;
+package controller;
+import mainthread.FXML_Loader;
 import database.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,7 +16,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Word;
 import speech.Speech;
-
+import translateapi.Translator;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -67,7 +66,7 @@ public class Searching_Pane_Controller implements Initializable {
     @FXML
     public void LoadSearchingButton(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("../UIDesign/Searching_Pane.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../uidesign/Searching_Pane.fxml"));
         Scene scene = new Scene(root, 750, 500);
         stage.setScene(scene);
     }
@@ -114,6 +113,7 @@ public class Searching_Pane_Controller implements Initializable {
         txtWord.setOnAction(actionEvent -> {
             String explain = dictionanryDB.getExplain(txtWord.getText());
            if (explain.compareTo("") == 0) {
+               txtTarget.setText(Translator.translate(txtWord.getText()));
                //dung api search tu
            } else {
                txtTarget.setText(txtWord.getText());
