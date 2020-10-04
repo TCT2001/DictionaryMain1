@@ -26,7 +26,7 @@
 <!--                                <Font size="14.0"/>-->
 <!--                            </font>-->
 <!--                        </MyTextField>-->
-                                                                        <MyTextField fx:id="txtWord" alignment="CENTER" layoutX="24.0" layoutY="6.0" prefHeight="30.0" prefWidth="195.0" text="Enter English Word">
+                                                                        <MyTextField fx:id="txtWord" alignment="CENTER" layoutX="24.0" layoutY="6.0" prefHeight="30.0" prefWidth="195.0" text="Enter English Word" onAction="#txtWordEnter">
                                                                             <font>
                                                                                 <Font size="14.0" />
                                                                             </font>
@@ -43,9 +43,8 @@
                                 <Tooltip text="Speak" />
                             </tooltip>
                         </Button>
-                        <Button fx:id="note" layoutX="539.0" layoutY="9.0" mnemonicParsing="false" onAction="#clickNote" prefHeight="25.0" prefWidth="25.0" styleClass="note" stylesheets="@Image/style.css" />
-                        <Button fx:id="edit" layoutX="489.0" layoutY="9.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="edit" stylesheets="@Image/style.css" />
-                        <Button fx:id="delete" layoutX="514.0" layoutY="9.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="delete" stylesheets="@Image/style.css" />
+                        <Button fx:id="note" layoutX="535.0" layoutY="11.0" mnemonicParsing="false" onAction="#clickNote" prefHeight="25.0" prefWidth="25.0" styleClass="note" stylesheets="@Image/style.css" />
+                        <Button fx:id="edit" layoutX="507.0" layoutY="11.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="edit" stylesheets="@Image/style.css" />
                     </children>
                 </AnchorPane>
             </center>

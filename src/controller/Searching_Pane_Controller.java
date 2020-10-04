@@ -24,6 +24,7 @@ import java.util.ResourceBundle;
 public class Searching_Pane_Controller implements Initializable {
     private DictionanryDB dictionanryDB = new DictionanryDB();
     private NotesDB notesDB = new NotesDB();
+    private HistoryDB historyDB = new HistoryDB();
 
     @FXML
     private BorderPane BorderPaneId;
@@ -51,8 +52,6 @@ public class Searching_Pane_Controller implements Initializable {
     private Button note;
     @FXML
     private Button edit;
-    @FXML
-    private Button delete;
 
     public Searching_Pane_Controller() {
     }
@@ -107,33 +106,16 @@ public class Searching_Pane_Controller implements Initializable {
         if (txtTarget.getText().compareTo("") == 0) {
             speechButton.setVisible(false);
             note.setVisible(false);
-            delete.setVisible(false);
             edit.setVisible(false);
         }
-        txtWord.setOnAction(actionEvent -> {
-            String explain = dictionanryDB.getExplain(txtWord.getText());
-           if (explain.compareTo("") == 0) {
-               txtTarget.setText(Translator.translate(txtWord.getText()));
-               //dung api search tu
-           } else {
-               txtTarget.setText(txtWord.getText());
-               txtWord.setText("");
-               txtDefinition.setText(explain);
-               //add thoi
-           }
-        });
-
         txtWord.textProperty().addListener((observable, oldValue, newValue) -> {
             if (oldValue.compareTo(newValue) != 0) {
                 String explain = dictionanryDB.getExplain(txtWord.getText());
                 if (explain.compareTo("") == 0 || newValue.compareTo("") == 0) {
-                    //dung api search tu
-                    //tam thoi thi an het text di
                     txtTarget.setText("");
                     txtDefinition.setText("");
                     speechButton.setVisible(false);
                     note.setVisible(false);
-                    delete.setVisible(false);
                     edit.setVisible(false);
 
                 } else {
@@ -144,7 +126,6 @@ public class Searching_Pane_Controller implements Initializable {
                     if (notesDB.getExplain(txtTarget.getText()).compareTo("") == 0) {
                         note.setVisible(true);
                     } else note.setVisible(false);
-                    delete.setVisible(true);
                     edit.setVisible(true);
                 }
             }
@@ -168,4 +149,25 @@ public class Searching_Pane_Controller implements Initializable {
         //TODO
     }
 
+    public void txtWordEnter(ActionEvent actionEvent) {
+        String keyword = txtWord.getText();
+        if (keyword.equals("")) {
+            txtDefinition.setText("");
+            return;
+        }
+        String explain = dictionanryDB.getExplain(keyword);
+        if (explain.compareTo("") == 0) {
+            explain = Translator.translate(keyword);
+            //dung api search tu
+            dictionanryDB.addWord(new Word(keyword,explain));
+        }
+        System.out.println(explain +"??");
+        txtTarget.setText(keyword);
+        // txtWord.setText("");
+        txtDefinition.setText(explain);
+
+        //add thoi
+        historyDB.addWord(new Word(keyword,explain));
+
+    }
 }

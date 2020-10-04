@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class HistoryDB extends Table {
-    HistoryDB() {
+    public HistoryDB() {
         table = "histories";
     }
     public void deleteWord(String tager) {

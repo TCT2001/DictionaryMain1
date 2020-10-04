@@ -7,7 +7,6 @@ import java.sql.Statement;
 
 
 public class Database {
-    public static final String TABLENAME = "dictionary";
     public static final String COLUME_WORD_TARGET = "word_target";
     public static final String COLUME_WORD_EXPLAIN = "word_explain";
     private static Connection connection = createNewDatabase("dictionary.db");
