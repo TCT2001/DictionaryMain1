@@ -85,6 +85,15 @@ public class Table {
             ex.printStackTrace();
         }
     }
+
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        connection.close();
+        connection = null;
+    }
+
+
     //d
 }
 

@@ -9,7 +9,7 @@ import java.sql.Statement;
 public class Database {
     public static final String COLUME_WORD_TARGET = "word_target";
     public static final String COLUME_WORD_EXPLAIN = "word_explain";
-    private static Connection connection = createNewDatabase("dictionary.db");
+    private static Connection connection = null;
 
     private static void createTable(Connection connection) {
         String sql = "CREATE TABLE IF NOT EXISTS dictionary (\n"
@@ -31,7 +31,7 @@ public class Database {
         }
     }
 
-    private static Connection createNewDatabase(String fileName) {
+    public static Connection createNewDatabase(String fileName) {
         String url = "jdbc:sqlite:src/database/" + fileName;
         try  {
             Connection conn = DriverManager.getConnection(url);
@@ -44,6 +44,9 @@ public class Database {
     }
 
     public static Connection getDatabase() {
+        if (connection == null) {
+            connection = createNewDatabase("dictionary.db");
+        }
         return connection;
     }
 
