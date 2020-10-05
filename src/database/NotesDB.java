@@ -56,5 +56,13 @@ public class NotesDB extends Table{
         }
         return arrayList;
     }
+
+    public static void main(String[] args) {
+        NotesDB notesDB = new NotesDB();
+//        notesDB.table ="dictionary";
+        notesDB.updateExplain("he","?");
+        System.out.println(notesDB.getExplain("he"));
+//        notesDB.deleteWord("");
+    }
 }
 
