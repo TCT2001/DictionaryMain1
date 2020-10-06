@@ -20,14 +20,17 @@ public class Table {
     protected String table = "";
     //c
     public void addWord(Word word) {
-        System.out.println("add");
-        if (getExplain(word.getWord_target()).equals("")) {
-
+        String target = word.getWord_target();
+        String explain = word.getWord_explain();
+        if (target.equals("") || explain.equals("")) {
+            return;
+        }
+        if (getExplain(target).equals("")) {
             String sql = "INSERT INTO "+table+"(word_target,word_explain) VALUES(?,?)";
             try {
                 PreparedStatement pstmt = connection.prepareStatement(sql);
-                pstmt.setString(1, word.getWord_target());
-                pstmt.setString(2, word.getWord_explain());
+                pstmt.setString(1, target);
+                pstmt.setString(2, explain);
                 pstmt.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();

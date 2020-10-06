@@ -102,12 +102,9 @@ public class Searching_Pane_Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        if (txtTarget.getText().compareTo("") == 0) {
-            speechButton.setVisible(false);
-            note.setVisible(false);
-            edit.setVisible(false);
-        }
+        speechButton.setVisible(false);
+        note.setVisible(false);
+        edit.setVisible(false);
         txtWord.textProperty().addListener((observable, oldValue, newValue) -> {
             if (oldValue.compareTo(newValue) != 0) {
                 String explain = dictionanryDB.getExplain(txtWord.getText());
@@ -141,7 +138,7 @@ public class Searching_Pane_Controller implements Initializable {
 
     @FXML
     public void clickEdit(ActionEvent actionEvent){
-        //TODO
+        System.out.println("clicker edit");
     }
 
     @FXML
@@ -157,17 +154,25 @@ public class Searching_Pane_Controller implements Initializable {
         }
         String explain = dictionanryDB.getExplain(keyword);
         if (explain.compareTo("") == 0) {
+            //dung api network thi dung multithread
             explain = Translator.translate(keyword);
             //dung api search tu
+            if (explain.equals("")){
+                txtTarget.setText("Network Error !");
+                return;
+            }
             dictionanryDB.addWord(new Word(keyword,explain));
         }
-        System.out.println(explain +"??");
         txtTarget.setText(keyword);
         // txtWord.setText("");
         txtDefinition.setText(explain);
-
         //add thoi
         historyDB.addWord(new Word(keyword,explain));
+        speechButton.setVisible(true);
+//        editButton.setVisible(true);
+        if (!notesDB.isExist(keyword)) {
+            noteButton.setVisible(true);
+        }
 
     }
 }

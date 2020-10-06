@@ -58,21 +58,5 @@ public class NotesDB extends Table{
         return arrayList;
     }
 
-    public static void main(String[] args) {
-        NotesDB notesDB = new NotesDB();
-        notesDB.table ="dictionary";
-        notesDB.updateExplain("he","/hi:/\n" +
-                "*  đại từ\n" +
-                "- nó, anh ấy, ông ấy... (chỉ người và động vật giống đực)\n" +
-                "*  danh từ\n" +
-                "- đàn ông; con đực\n" +
-                "- (định ngữ) đực (động vật)");
-        notesDB.updateExplain("fuck","/fʌk/\n"+
-                "*  động từ\n"+
-                "giao hợp, làm tình");
-//        notesDB.updateExplain("he","dcm");
-        System.out.println(notesDB.getExplain("he"));
-    }
-
 }
 
