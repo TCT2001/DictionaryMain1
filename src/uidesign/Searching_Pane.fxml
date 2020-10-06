@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+
 <!--<?import textfield.MyTextField?>-->
+
 <AnchorPane prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Searching_Pane_Controller">
     <children>
         <BorderPane fx:id="BorderPaneId" layoutX="114.0" layoutY="55.0" prefHeight="320.0" prefWidth="610.0">
@@ -18,7 +21,7 @@
 <!--                                <Font size="14.0"/>-->
 <!--                            </font>-->
 <!--                        </MyTextField>-->
-                        <TextField fx:id="txtWord" alignment="CENTER" layoutX="24.0" layoutY="6.0" prefHeight="30.0" prefWidth="195.0" text="Enter English Word" onAction="#txtWordEnter">
+                        <TextField fx:id="txtWord" alignment="CENTER" layoutX="24.0" layoutY="6.0" onAction="#txtWordEnter" prefHeight="30.0" prefWidth="195.0" text="Enter English Word">
                             <font>
                                 <Font size="14.0" />
                             </font>
@@ -37,6 +40,7 @@
                         </Button>
                         <Button fx:id="note" layoutX="535.0" layoutY="11.0" mnemonicParsing="false" onAction="#clickNote" prefHeight="25.0" prefWidth="25.0" styleClass="note" stylesheets="@Image/style.css" />
                         <Button fx:id="edit" layoutX="507.0" layoutY="11.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="edit" stylesheets="@Image/style.css" />
+                  <ListView fx:id="listViewHistory" layoutX="24.0" layoutY="35.0" prefHeight="275.0" prefWidth="195.0" />
                     </children>
                 </AnchorPane>
             </center>
@@ -47,22 +51,17 @@
             </font>
         </Text>
         <Text layoutX="14.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Object Oriented Programming" />
-        <Button fx:id="searchButton" layoutX="32.0" layoutY="74.0" mnemonicParsing="false" onAction="#LoadSearchingButton" prefHeight="30.0" prefWidth="50.0" styleClass="searchButton" stylesheets="@Image/style.css" textAlignment="CENTER">
+        <Button fx:id="searchButton" layoutX="34.0" layoutY="95.0" mnemonicParsing="false" onAction="#LoadSearchingButton" prefHeight="30.0" prefWidth="50.0" styleClass="searchButton" stylesheets="@Image/style.css" textAlignment="CENTER">
             <tooltip>
                 <Tooltip text="Search" />
             </tooltip>
         </Button>
-        <Button fx:id="historyButton" layoutX="32.0" layoutY="152.0" mnemonicParsing="false" onAction="#LoadHistoryButton" prefHeight="30.0" prefWidth="50.0" styleClass="historyButton" stylesheets="@Image/style.css">
-            <tooltip>
-                <Tooltip text="History" />
-            </tooltip>
-        </Button>
-        <Button fx:id="noteButton" layoutX="32.0" layoutY="235.0" mnemonicParsing="false" onAction="#LoadNoteButton" prefHeight="30.0" prefWidth="50.0" styleClass="noteButton" stylesheets="@Image/style.css">
+        <Button fx:id="noteButton" layoutX="34.0" layoutY="188.0" mnemonicParsing="false" onAction="#LoadNoteButton" prefHeight="30.0" prefWidth="50.0" styleClass="noteButton" stylesheets="@Image/style.css">
             <tooltip>
                 <Tooltip text="Hightlight" />
             </tooltip>
         </Button>
-        <Button fx:id="aboutUsButton" layoutX="32.0" layoutY="319.0" mnemonicParsing="false" onAction="#LoadAboutUsButton" prefHeight="30.0" prefWidth="50.0" styleClass="aboutUsButton" stylesheets="@Image/style.css">
+        <Button fx:id="aboutUsButton" layoutX="34.0" layoutY="279.0" mnemonicParsing="false" onAction="#LoadAboutUsButton" prefHeight="30.0" prefWidth="50.0" styleClass="aboutUsButton" stylesheets="@Image/style.css">
             <tooltip>
                 <Tooltip text="About Us" />
             </tooltip>

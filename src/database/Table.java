@@ -96,7 +96,5 @@ public class Table {
         connection = null;
     }
 
-
-    //d
 }
 

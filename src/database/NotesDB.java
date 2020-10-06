@@ -51,7 +51,6 @@ public class NotesDB extends Table{
                 String string = rs.getString(Database.COLUME_WORD_TARGET);
                 arrayList.add(string);
             }
-
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

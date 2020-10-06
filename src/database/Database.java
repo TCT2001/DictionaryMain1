@@ -39,15 +39,18 @@ public class Database {
             return  conn;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            return null;
         }
-        return null;
     }
 
     public static Connection getDatabase() {
-        if (connection == null) {
-            connection = createNewDatabase("dictionary.db");
+        try {
+            if (connection == null || connection.isClosed()) {
+                connection = createNewDatabase("dictionary.db");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
         return connection;
     }
-
 }
