@@ -1,4 +1,5 @@
 package controller;
+
 import mainthread.FXML_Loader;
 import database.*;
 import javafx.event.ActionEvent;
@@ -17,6 +18,7 @@ import javafx.stage.Stage;
 import model.Word;
 import speech.Speech;
 import translateapi.Translator;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -99,7 +101,6 @@ public class Searching_Pane_Controller implements Initializable {
     }
 
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         speechButton.setVisible(false);
@@ -131,18 +132,18 @@ public class Searching_Pane_Controller implements Initializable {
     }
 
     @FXML
-    public void clickNote(ActionEvent actionEvent){
-        notesDB.addWord(new Word(txtTarget.getText(),txtDefinition.getText()));
+    public void clickNote(ActionEvent actionEvent) {
+        notesDB.addWord(new Word(txtTarget.getText(), txtDefinition.getText()));
         note.setVisible(false);
     }
 
     @FXML
-    public void clickEdit(ActionEvent actionEvent){
+    public void clickEdit(ActionEvent actionEvent) {
         System.out.println("clicker edit");
     }
 
     @FXML
-    public void clickDelete(ActionEvent actionEvent){
+    public void clickDelete(ActionEvent actionEvent) {
         //TODO
     }
 
@@ -157,17 +158,17 @@ public class Searching_Pane_Controller implements Initializable {
             //dung api network thi dung multithread
             explain = Translator.translate(keyword);
             //dung api search tu
-            if (explain.equals("")){
+            if (explain.equals("")) {
                 txtTarget.setText("Network Error !");
                 return;
             }
-            dictionanryDB.addWord(new Word(keyword,explain));
+            dictionanryDB.addWord(new Word(keyword, explain));
         }
         txtTarget.setText(keyword);
         // txtWord.setText("");
         txtDefinition.setText(explain);
         //add thoi
-        historyDB.addWord(new Word(keyword,explain));
+        historyDB.addWord(new Word(keyword, explain));
         speechButton.setVisible(true);
 //        editButton.setVisible(true);
         if (!notesDB.isExist(keyword)) {

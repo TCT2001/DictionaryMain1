@@ -16,6 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -23,11 +24,13 @@ public class Note_Pane_Controller implements Initializable {
     private NotesDB notesDB = new NotesDB();
     private ObservableList observableList = FXCollections.observableArrayList();
     @FXML
-    private ListView <String> listView;
+    private ListView<String> listView;
+
     public void initialize(URL location, ResourceBundle resources) {
         LoadNoteWord();
     }
-    private void LoadNoteWord(){
+
+    private void LoadNoteWord() {
         observableList.removeAll();
         observableList.addAll(notesDB.getWordFromNoteDB());
         listView.getItems().addAll(observableList);
@@ -57,9 +60,6 @@ public class Note_Pane_Controller implements Initializable {
                     System.out.println(lastItem + " : " + event);
                 }
             });
-//            hbox.setOnMouseMoved(mouseEvent -> {
-//                System.out.println(lastItem);
-//            });
             hbox.setOnMouseClicked(mouseEvent -> {
                 System.out.println(lastItem);
             });
@@ -74,7 +74,7 @@ public class Note_Pane_Controller implements Initializable {
                 setGraphic(null);
             } else {
                 lastItem = item;
-                text.setText(item!=null ? item : "<null>");
+                text.setText(item != null ? item : "<null>");
                 setGraphic(hbox);
             }
         }
