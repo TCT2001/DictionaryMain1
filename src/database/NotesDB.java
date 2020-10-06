@@ -1,22 +1,17 @@
 package database;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.ListCell;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class NotesDB extends Table{
-    public NotesDB(){
-        table ="notes";
+public class NotesDB extends Table {
+    public NotesDB() {
+        table = "notes";
     }
+
     //false = noExist
-    public Boolean isExist(String target){
+    public Boolean isExist(String target) {
         String sql = "SELECT " + Database.COLUME_WORD_EXPLAIN + " FROM " +
                 table + " WHERE " + Database.COLUME_WORD_TARGET + " = ?";
         try {
@@ -32,6 +27,7 @@ public class NotesDB extends Table{
             return false;
         }
     }
+
     public void deleteWord(String tager) {
 //        String sql = "DELETE FROM dictionary WHERE instr(word_target, 'city-planning') > 0";
         String sql = "DELETE FROM " + table + " WHERE " + Database.COLUME_WORD_TARGET + " = ?";
@@ -39,8 +35,10 @@ public class NotesDB extends Table{
             PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setString(1, tager);
             pstmt.executeUpdate();
-        } catch (SQLException e) { }
+        } catch (SQLException e) {
+        }
     }
+
     public ArrayList<String> getWordFromNoteDB() {
         String sql = "SELECT " + Database.COLUME_WORD_TARGET + " FROM " + table;
         ArrayList<String> arrayList = new ArrayList<>();

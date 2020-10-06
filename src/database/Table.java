@@ -1,12 +1,6 @@
 package database;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.ListCell;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
 import model.Word;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,6 +12,7 @@ public class Table {
     //CRUD
     protected Connection connection = Database.getDatabase();
     protected String table = "";
+
     //c
     public void addWord(Word word) {
         String target = word.getWord_target();
@@ -26,7 +21,7 @@ public class Table {
             return;
         }
         if (getExplain(target).equals("")) {
-            String sql = "INSERT INTO "+table+"(word_target,word_explain) VALUES(?,?)";
+            String sql = "INSERT INTO " + table + "(word_target,word_explain) VALUES(?,?)";
             try {
                 PreparedStatement pstmt = connection.prepareStatement(sql);
                 pstmt.setString(1, target);
@@ -37,6 +32,7 @@ public class Table {
             }
         }
     }
+
     //r
     public String getExplain(String target) {
         String sql = "SELECT " + Database.COLUME_WORD_EXPLAIN + " FROM " +
@@ -54,6 +50,7 @@ public class Table {
             return "";
         }
     }
+
     //r
     public List<Word> getAllWord() {
         String sql = "SELECT " + Database.COLUME_WORD_TARGET + ", " + Database.COLUME_WORD_EXPLAIN + " FROM " + table;
@@ -73,6 +70,7 @@ public class Table {
         }
         return null;
     }
+
     //u
     public void updateExplain(String target, String explain) {
         String sql = "UPDATE " + table + " SET " + Database.COLUME_WORD_EXPLAIN +

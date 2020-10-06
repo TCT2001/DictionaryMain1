@@ -11,11 +11,12 @@ public class Translator {
     private static final String url = endpoint + "/translate?api-version=3.0&to=vi";
     // Instantiates the OkHttpClient.
     private static final OkHttpClient client = new OkHttpClient();
+
     // This function performs a POST request.
-    public static String translate(String word){
+    public static String translate(String word) {
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(mediaType,
-                "[{\n\t\"Text\": \""+word+"\"\n}]");
+                "[{\n\t\"Text\": \"" + word + "\"\n}]");
         Request request = new Request.Builder()
                 .url(url).post(body)
                 .addHeader("Ocp-Apim-Subscription-Key", subscriptionKey)
@@ -32,10 +33,10 @@ public class Translator {
     // This function prettifies the json response.
     public static String prettify(String json_text) {
         JsonParser parser = new JsonParser();
-        JsonElement jsonElement= parser.parse(json_text);
+        JsonElement jsonElement = parser.parse(json_text);
         if (!jsonElement.isJsonArray()) return "";
         JsonObject json = jsonElement.getAsJsonArray().get(0).getAsJsonObject();
         JsonObject translateJson = json.get("translations").getAsJsonArray().get(0).getAsJsonObject();
-        return translateJson.get("text").toString().replaceAll("\"","");
+        return translateJson.get("text").toString().replaceAll("\"", "");
     }
 }

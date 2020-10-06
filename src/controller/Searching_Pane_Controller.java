@@ -1,15 +1,5 @@
 package controller;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.util.Callback;
 import mainthread.FXML_Loader;
 import database.*;
 import javafx.event.ActionEvent;
@@ -19,6 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -53,6 +45,8 @@ public class Searching_Pane_Controller implements Initializable {
     @FXML
     private Button editButton;
     @FXML
+    private Button historyButton;
+    @FXML
     private Button noteButton;
     @FXML
     private Button aboutUsButton;
@@ -60,9 +54,6 @@ public class Searching_Pane_Controller implements Initializable {
     private Button note;
     @FXML
     private Button edit;
-    @FXML
-    private ListView<String> listViewHistory;
-    private ObservableList observableList = FXCollections.observableArrayList();
 
     public Searching_Pane_Controller() {
     }
@@ -89,6 +80,13 @@ public class Searching_Pane_Controller implements Initializable {
     }
 
     @FXML
+    public void LoadHistoryButton(ActionEvent actionEvent) {
+        FXML_Loader test = new FXML_Loader();
+        Pane view = test.getPane("History_Pane");
+        BorderPaneId.setCenter(view);
+    }
+
+    @FXML
     public void LoadNoteButton(ActionEvent actionEvent) {
         FXML_Loader test = new FXML_Loader();
         Pane view = test.getPane("Note_Pane");
@@ -105,7 +103,6 @@ public class Searching_Pane_Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        LoadHistoryWord();
         speechButton.setVisible(false);
         note.setVisible(false);
         edit.setVisible(false);
@@ -177,66 +174,6 @@ public class Searching_Pane_Controller implements Initializable {
         if (!notesDB.isExist(keyword)) {
             noteButton.setVisible(true);
         }
+
     }
-
-    //Load History Word Search
-    private void LoadHistoryWord() {
-        observableList.removeAll();
-        observableList.addAll(historyDB.getWordFromHistoryDB());
-        listViewHistory.getItems().addAll(observableList);
-        listViewHistory.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
-            @Override
-            public ListCell<String> call(ListView<String> stringListView) {
-                return new Searching_Pane_Controller.Cell();
-            }
-        });
-    }
-
-    class Cell extends ListCell<String> {
-        HBox hbox = new HBox(10);
-        Text text = new Text();
-        Label label = new Label("(empty)");
-        Pane pane = new Pane();
-        Button button = new Button();
-        String lastItem;
-
-        public Cell() {
-            super();
-            button.setPrefSize(25, 20);
-            button.setStyle("-fx-background-image: url('/uidesign/Image/delete.png');");
-            //hbox.getChildren().addAll(text, pane, button);
-            hbox.getChildren().addAll(button, text, pane);
-            HBox.setHgrow(pane, Priority.ALWAYS);
-            //Khi nhan vao chu
-            button.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    System.out.println(lastItem + " : " + event);
-                }
-            });
-//            hbox.setOnMouseMoved(mouseEvent -> {
-//                System.out.println(lastItem);
-//            });
-            hbox.setOnMouseClicked(mouseEvent -> {
-                //TODO
-                txtWord.setText(lastItem);
-                System.out.println(lastItem);
-            });
-        }
-
-        @Override
-        protected void updateItem(String item, boolean empty) {
-            super.updateItem(item, empty);
-            setText(null);  // No text in label of super class
-            if (empty) {
-                lastItem = null;
-                setGraphic(null);
-            } else {
-                lastItem = item;
-                text.setText(item != null ? item : "<null>");
-                setGraphic(hbox);
-            }
-        }
-    }
-    //Click chon history words
 }

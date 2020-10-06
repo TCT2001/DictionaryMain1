@@ -33,10 +33,10 @@ public class Database {
 
     public static Connection createNewDatabase(String fileName) {
         String url = "jdbc:sqlite:src/database/" + fileName;
-        try  {
+        try {
             Connection conn = DriverManager.getConnection(url);
             createTable(conn);
-            return  conn;
+            return conn;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return null;

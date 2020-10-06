@@ -7,7 +7,7 @@ import javax.speech.synthesis.SynthesizerModeDesc;
 
 //using jsapi
 public class Speech {
-    public static void speck(String text){
+    public static void speck(String text) {
         try {
             // Set property as Kevin Dictionary
             System.setProperty(
@@ -39,10 +39,8 @@ public class Speech {
                     Synthesizer.QUEUE_EMPTY);
 
             // Deallocate the Synthesizer.
-          //  synthesizer.deallocate();
-        }
-
-        catch (Exception e) {
+            //  synthesizer.deallocate();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

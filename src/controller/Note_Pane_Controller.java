@@ -63,9 +63,6 @@ public class Note_Pane_Controller implements Initializable {
                     System.out.println(lastItem + " : " + event);
                 }
             });
-//            hbox.setOnMouseMoved(mouseEvent -> {
-//                System.out.println(lastItem);
-//            });
             hbox.setOnMouseClicked(mouseEvent -> {
                 System.out.println(lastItem);
             });
