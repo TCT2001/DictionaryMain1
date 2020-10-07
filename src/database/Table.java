@@ -1,6 +1,7 @@
 package database;
 
 import model.Word;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,10 +31,10 @@ public class Table {
                 pstmt.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
-                System.out.println("loi o day ?" +expdb);
+                System.out.println("loi o day ?" + expdb);
             }
         } else {
-            System.out.println(getExplain(target) +" ??");
+            System.out.println(getExplain(target) + " ??");
         }
     }
 

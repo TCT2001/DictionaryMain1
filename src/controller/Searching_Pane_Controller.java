@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.text.Font;
 import javafx.util.Callback;
 import mainthread.FXML_Loader;
 import database.*;
@@ -82,13 +83,6 @@ public class Searching_Pane_Controller implements Initializable {
     }
 
     @FXML
-    private void LoadEditingButton(ActionEvent actionEvent) {
-        FXML_Loader test = new FXML_Loader();
-        Pane view = test.getPane("Edit_Pane");
-        BorderPaneId.setCenter(view);
-    }
-
-    @FXML
     public void loadNoteButton(ActionEvent actionEvent) {
         FXML_Loader test = new FXML_Loader();
         Pane view = test.getPane("Note_Pane");
@@ -106,6 +100,11 @@ public class Searching_Pane_Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadHistoryWord();
+        btnSave.setPrefSize(30,30);
+        btnSave.setStyle("-fx-background-image: url('/uidesign/Image/save.png')");
+        speechButton.setFont(new Font(12));
+        edit.setFont(new Font(12));
+        note.setFont(new Font(12));
         speechButton.setVisible(false);
         note.setVisible(false);
         edit.setVisible(false);
@@ -231,6 +230,7 @@ public class Searching_Pane_Controller implements Initializable {
         public Cell() {
             super();
             button.setPrefSize(25, 20);
+            button.setFont(new Font(12));
             button.setStyle("-fx-background-image: url('/uidesign/Image/delete.png');");
             //hbox.getChildren().addAll(text, pane, button);
             hbox.getChildren().addAll(button, text, pane);
