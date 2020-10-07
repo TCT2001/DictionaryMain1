@@ -44,17 +44,13 @@ public class Database {
     }
 
     public static Connection getDatabase() {
-//        try {
-//            if (connection == null || connection.isClosed()) {
-//                connection = createNewDatabase();
-//            }
-//        } catch (SQLException throwables) {
-//            connection = createNewDatabase();
-//            return connection;
-//        }
-//        return connection;
-        if (connection == null) {
+        try {
+            if (connection == null || connection.isClosed()) {
+                connection = createNewDatabase();
+            }
+        } catch (SQLException throwables) {
             connection = createNewDatabase();
+            return connection;
         }
         return connection;
     }

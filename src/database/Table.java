@@ -94,6 +94,7 @@ public class Table {
     @Override
     protected void finalize() throws Throwable {
         super.finalize();
+        //Phat Sinh Loi
         connection.close();
         connection = null;
     }
