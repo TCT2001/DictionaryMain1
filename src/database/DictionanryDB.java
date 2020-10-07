@@ -13,13 +13,18 @@ public class DictionanryDB extends Table {
     }
 
     public List<String> getAllWordHint(String text) {
+        List<String> res = new ArrayList<>();
+        if (text.contains("\'")) {
+            //err sql query
+            return res;
+        }
         String sql = "SELECT *\n" +
                 "  FROM dictionary\n" +
                 " WHERE instr(word_target, '" + text + "') = 1 LIMIT 0,13";
         try {
             PreparedStatement pstmt = connection.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
-            List<String> res = new ArrayList<>();
+
             while (rs.next()) {
                 if (rs.getString(Database.COLUME_WORD_TARGET).compareTo("") != 0) {
                     res.add(rs.getString(Database.COLUME_WORD_TARGET));
@@ -30,12 +35,7 @@ public class DictionanryDB extends Table {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return null;
-    }
-
-    public static void main(String[] args) {
-        DictionanryDB dictionanryDB = new DictionanryDB();
-        dictionanryDB.updateExplain("fuck","fuckedited");
+        return res;
     }
 
 }

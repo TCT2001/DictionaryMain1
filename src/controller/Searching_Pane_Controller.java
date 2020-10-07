@@ -64,6 +64,12 @@ public class Searching_Pane_Controller implements Initializable {
     private ListView<String> listViewHistory;
     ObservableList observableList = FXCollections.observableArrayList();
 
+    //edit
+    @FXML
+    private Button btnSave;
+    @FXML
+    private TextArea txtEdit;
+
     public Searching_Pane_Controller() {
     }
 
@@ -151,8 +157,14 @@ public class Searching_Pane_Controller implements Initializable {
 
     @FXML
     public void clickEdit(ActionEvent actionEvent) {
+        btnSave.setVisible(true);
+        txtDefinition.setVisible(false);
+        txtEdit.setVisible(true);
+        txtEdit.setText(txtDefinition.getText());
         System.out.println("clicker edit");
     }
+
+
     public void txtWordEnter(ActionEvent actionEvent) {
         String keyword = txtWord.getText();
         if (keyword.equals("")) {
@@ -199,6 +211,20 @@ public class Searching_Pane_Controller implements Initializable {
         listViewHistory.setVisible(false);
         listViewHistory.refresh();
         listViewHistory.setVisible(true);
+    }
+
+    public void onSave(ActionEvent actionEvent) {
+        System.out.println("?");
+        String text = txtEdit.getText();
+        if (!text.equals("")) {
+            dictionanryDB.updateExplain(txtTarget.getText(),text);
+            txtDefinition.setText(text);
+        }
+        btnSave.setVisible(false);
+        txtEdit.setVisible(false);
+
+        txtDefinition.setVisible(true);
+
     }
 
 

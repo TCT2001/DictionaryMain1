@@ -7,27 +7,36 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<!--<?import textfield.MyTextField?>-->
+<?import textfield.MyTextField?>
 
 <AnchorPane prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Searching_Pane_Controller">
     <children>
         <BorderPane fx:id="BorderPaneId" layoutX="114.0" layoutY="55.0" prefHeight="320.0" prefWidth="610.0">
             <center>
-                <AnchorPane prefHeight="325.0" prefWidth="582.0" BorderPane.alignment="CENTER">
+                <AnchorPane prefHeight="325.0" prefWidth="583.0" BorderPane.alignment="CENTER">
                     <children>
-<!--                        <MyTextField fx:id="txtWord" alignment="CENTER" layoutX="22.0" layoutY="14.0" prefHeight="30.0"-->
-<!--                                     prefWidth="177.0" text="Enter English Word">-->
-<!--                            <font>-->
-<!--                                <Font size="14.0"/>-->
-<!--                            </font>-->
-<!--                        </MyTextField>-->
-<!--                        <MyTextField fx:id="txtWord" alignment="CENTER" layoutX="24.0" layoutY="6.0" onAction="#txtWordEnter" prefHeight="30.0" prefWidth="195.0" >-->
-<!--                            <font>-->
-<!--                                <Font size="14.0" />-->
-<!--                            </font>-->
-<!--                        </MyTextField>-->
-                        <Text fx:id="txtTarget" layoutX="234.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="297.7294921875" />
-                        <Text fx:id="txtDefinition" layoutX="233.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="319.38427734375" />
+                        <MyTextField fx:id="txtWord" alignment="CENTER" layoutX="24.0" layoutY="6.0" onAction="#txtWordEnter" prefHeight="30.0" prefWidth="195.0" >
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </MyTextField>
+                  <ScrollPane layoutX="228.0" layoutY="8.0" prefHeight="302.0" prefWidth="338.0">
+                     <content>
+                        <AnchorPane prefHeight="298.0" prefWidth="334.0">
+                           <children>
+
+                                    <Text fx:id="txtTarget" layoutX="6.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" visible="true" wrappingWidth="267.74365234375">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Text>
+                                    <Text fx:id="txtDefinition" layoutX="7.0" layoutY="50.0" strokeType="OUTSIDE" visible="true" wrappingWidth="319.38427734375" />
+                              <TextArea  fx:id="txtEdit" layoutY="37.0" prefHeight="262.0" prefWidth="336.0"  visible="false" />
+                              <Button fx:id="btnSave" layoutX="258.0" layoutY="259.0" mnemonicParsing="false" text="Button" visible="false" onAction="#onSave"/>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#74a174" height="326.0" layoutY="-1.0" stroke="#74a174" strokeType="INSIDE" width="24.0" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#74a174" height="16.0" layoutY="-7.0" stroke="#74a174" strokeType="INSIDE" width="587.0" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#74a174" height="16.0" layoutX="1.0" layoutY="309.0" stroke="#74a174" strokeType="INSIDE" width="587.0" />
@@ -38,8 +47,8 @@
                                 <Tooltip text="Speak" />
                             </tooltip>
                         </Button>
-                        <Button fx:id="note" layoutX="535.0" layoutY="11.0" mnemonicParsing="false" onAction="#clickNote" prefHeight="25.0" prefWidth="25.0" styleClass="note" stylesheets="@Image/style.css" />
-                        <Button fx:id="edit" layoutX="507.0" layoutY="11.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="edit" stylesheets="@Image/style.css" />
+                        <Button fx:id="note" layoutX="535.0" layoutY="12.0" mnemonicParsing="false" onAction="#clickNote" prefHeight="25.0" prefWidth="25.0" styleClass="note" stylesheets="@Image/style.css" />
+                        <Button fx:id="edit" layoutX="506.0" layoutY="13.0" mnemonicParsing="false" onAction="#clickEdit" prefHeight="25.0" prefWidth="25.0" styleClass="edit" stylesheets="@Image/style.css" />
                   <ListView fx:id="listViewHistory" layoutX="24.0" layoutY="35.0" prefHeight="275.0" prefWidth="195.0" />
                     </children>
                 </AnchorPane>
