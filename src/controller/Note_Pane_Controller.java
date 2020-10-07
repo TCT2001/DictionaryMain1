@@ -14,6 +14,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 
@@ -25,6 +26,8 @@ public class Note_Pane_Controller implements Initializable {
     private ObservableList observableList = FXCollections.observableArrayList();
     @FXML
     private ListView<String> listView;
+    @FXML
+    private Text textDifinitionInNote;
 
     public void initialize(URL location, ResourceBundle resources) {
         LoadNoteWord();
@@ -53,6 +56,7 @@ public class Note_Pane_Controller implements Initializable {
         public Cell() {
             super();
             button.setPrefSize(25, 20);
+            button.setFont(new Font(12));
             button.setStyle("-fx-background-image: url('/uidesign/Image/delete.png');");
             //hbox.getChildren().addAll(text, pane, button);
             hbox.getChildren().addAll(button, text, pane);
@@ -67,7 +71,7 @@ public class Note_Pane_Controller implements Initializable {
                 }
             });
             hbox.setOnMouseClicked(mouseEvent -> {
-                //show explain
+                textDifinitionInNote.setText(lastItem+"\n"+notesDB.getExplain(lastItem));
             });
         }
 

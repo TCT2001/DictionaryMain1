@@ -11,8 +11,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../uidesign/Searching_Pane.fxml"));
-//        Parent root = FXMLLoader.load(getClass().getResource("../uidesign/History_Pane.fxml"));
-        Scene scene = new Scene(root, 800, 500);
+        Scene scene = new Scene(root, 750, 500);
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(scene);
         primaryStage.show();

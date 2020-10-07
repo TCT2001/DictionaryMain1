@@ -6,6 +6,8 @@ import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.text.Font;
+import javafx.scene.text.TextFlow;
 import javafx.util.Callback;
 import mainthread.FXML_Loader;
 import database.*;
@@ -63,7 +65,10 @@ public class Searching_Pane_Controller implements Initializable {
     @FXML
     private ListView<String> listViewHistory;
     ObservableList observableList = FXCollections.observableArrayList();
-
+    @FXML
+    private Text editWordText;
+    @FXML
+    private TextField textFieldEditWord;
     public Searching_Pane_Controller() {
     }
 
@@ -79,13 +84,6 @@ public class Searching_Pane_Controller implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("../uidesign/Searching_Pane.fxml"));
         Scene scene = new Scene(root, 750, 500);
         stage.setScene(scene);
-    }
-
-    @FXML
-    private void LoadEditingButton(ActionEvent actionEvent) {
-        FXML_Loader test = new FXML_Loader();
-        Pane view = test.getPane("Edit_Pane");
-        BorderPaneId.setCenter(view);
     }
 
     @FXML
@@ -106,6 +104,9 @@ public class Searching_Pane_Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadHistoryWord();
+        editWordText.setVisible(false);
+        textFieldEditWord.setVisible(false);
+        speechButton.setFont(new Font(12));
         speechButton.setVisible(false);
         note.setVisible(false);
         edit.setVisible(false);
@@ -151,7 +152,23 @@ public class Searching_Pane_Controller implements Initializable {
 
     @FXML
     public void clickEdit(ActionEvent actionEvent) {
-        System.out.println("clicker edit");
+        txtDefinition.setText("");
+        edit.setVisible(false);
+        note.setVisible(false);
+        editWordText.setVisible(true);
+        textFieldEditWord.setVisible(true);
+    }
+    @FXML
+    public void newDefinition(ActionEvent actionEvent) {
+        String str = textFieldEditWord.getText();
+        if (str != null){
+            dictionanryDB.updateExplain(txtTarget.getText(), textFieldEditWord.getText());
+            editWordText.setVisible(false);
+            textFieldEditWord.setVisible(false);
+            txtDefinition.setText(str);
+            edit.setVisible(true);
+            note.setVisible(true);
+        }
     }
     public void txtWordEnter(ActionEvent actionEvent) {
         String keyword = txtWord.getText();
@@ -200,7 +217,10 @@ public class Searching_Pane_Controller implements Initializable {
         listViewHistory.refresh();
         listViewHistory.setVisible(true);
     }
-
+    private void forceListRefreshOn() {
+        ObservableList items = listViewHistory.getItems();
+        listViewHistory.setItems(null);
+    }
 
     class Cell extends ListCell<String> {
         HBox hbox = new HBox(10);
@@ -213,6 +233,7 @@ public class Searching_Pane_Controller implements Initializable {
         public Cell() {
             super();
             button.setPrefSize(25, 20);
+            button.setFont(new Font(12));
             button.setStyle("-fx-background-image: url('/uidesign/Image/delete.png');");
             //hbox.getChildren().addAll(text, pane, button);
             hbox.getChildren().addAll(button, text, pane);
