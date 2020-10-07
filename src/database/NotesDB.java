@@ -29,7 +29,6 @@ public class NotesDB extends Table {
     }
 
     public void deleteWord(String tager) {
-//        String sql = "DELETE FROM dictionary WHERE instr(word_target, 'city-planning') > 0";
         String sql = "DELETE FROM " + table + " WHERE " + Database.COLUME_WORD_TARGET + " = ?";
         try {
             PreparedStatement pstmt = connection.prepareStatement(sql);
@@ -54,6 +53,7 @@ public class NotesDB extends Table {
         }
         return arrayList;
     }
+
 
 }
 

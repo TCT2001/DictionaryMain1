@@ -60,11 +60,14 @@ public class Note_Pane_Controller implements Initializable {
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    System.out.println(lastItem + " : " + event);
+                    notesDB.deleteWord(lastItem);
+                    observableList.remove(lastItem);
+                    listView.setItems(null);
+                    listView.setItems(observableList);
                 }
             });
             hbox.setOnMouseClicked(mouseEvent -> {
-                System.out.println(lastItem);
+                //show explain
             });
         }
 

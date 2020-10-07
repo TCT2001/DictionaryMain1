@@ -1,4 +1,5 @@
 package textfield;
+
 import database.DictionanryDB;
 import javafx.geometry.Side;
 import javafx.scene.control.ContextMenu;
@@ -21,6 +22,7 @@ public class MyTextField extends TextField {
         this.entriesPopup = new ContextMenu();
         setListner();
     }
+
     /**
      * "Suggestion" specific listners
      */
@@ -37,7 +39,11 @@ public class MyTextField extends TextField {
                 if (!filteredEntries.isEmpty()) {
                     //build popup - list of "CustomMenuItem"
                     populatePopup(filteredEntries, enteredText);
-                    if (!entriesPopup.isShowing()) { //optional
+                    if (!entriesPopup.isShowing() && filteredEntries.size() > 0) { //optional
+//                        for(String s:filteredEntries) {
+//                            System.out.println("- " +s);
+//                        }
+//                        System.out.println("dcm >?>");
                         entriesPopup.show(MyTextField.this, Side.BOTTOM, 0, 0); //position of popup
                     }
                     //no suggestions -> hide
@@ -61,10 +67,8 @@ public class MyTextField extends TextField {
      */
     private void populatePopup(List<String> searchResult, String searchReauest) {
         List<CustomMenuItem> menuItems = new LinkedList<>();
-        int maxEntries = 17;
-        int count = Math.min(searchResult.size(), maxEntries);
         //Build list as set of labels
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < searchResult.size(); i++) {
             final String result = searchResult.get(i);
             Label entryLabel = new Label();
             entryLabel.setGraphic(Styles.buildTextFlow(result, searchReauest));
@@ -79,8 +83,6 @@ public class MyTextField extends TextField {
                 entriesPopup.hide();
             });
         }
-
-        //"Refresh" context menu
         entriesPopup.getItems().clear();
         entriesPopup.getItems().addAll(menuItems);
     }

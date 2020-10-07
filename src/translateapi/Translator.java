@@ -15,8 +15,7 @@ public class Translator {
     // This function performs a POST request.
     public static String translate(String word) {
         MediaType mediaType = MediaType.parse("application/json");
-        RequestBody body = RequestBody.create(mediaType,
-                "[{\n\t\"Text\": \"" + word + "\"\n}]");
+        RequestBody body = RequestBody.create(mediaType, "[{\n\t\"Text\": \"" + word + "\"\n}]");
         Request request = new Request.Builder()
                 .url(url).post(body)
                 .addHeader("Ocp-Apim-Subscription-Key", subscriptionKey)

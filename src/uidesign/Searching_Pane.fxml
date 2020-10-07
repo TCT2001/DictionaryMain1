@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<!--<?import textfield.MyTextField?>-->
+<?import textfield.MyTextField?>
 
 <AnchorPane prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Searching_Pane_Controller">
     <children>
@@ -21,11 +21,11 @@
 <!--                                <Font size="14.0"/>-->
 <!--                            </font>-->
 <!--                        </MyTextField>-->
-                        <TextField fx:id="txtWord" alignment="CENTER" layoutX="24.0" layoutY="6.0" onAction="#txtWordEnter" prefHeight="30.0" prefWidth="195.0" text="Enter English Word">
+                        <MyTextField fx:id="txtWord" alignment="CENTER" layoutX="24.0" layoutY="6.0" onAction="#txtWordEnter" prefHeight="30.0" prefWidth="195.0" >
                             <font>
                                 <Font size="14.0" />
                             </font>
-                        </TextField>
+                        </MyTextField>
                         <Text fx:id="txtTarget" layoutX="234.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="297.7294921875" />
                         <Text fx:id="txtDefinition" layoutX="233.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="319.38427734375" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#74a174" height="326.0" layoutY="-1.0" stroke="#74a174" strokeType="INSIDE" width="24.0" />
@@ -51,17 +51,17 @@
             </font>
         </Text>
         <Text layoutX="14.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Object Oriented Programming" />
-        <Button fx:id="searchButton" layoutX="34.0" layoutY="95.0" mnemonicParsing="false" onAction="#LoadSearchingButton" prefHeight="30.0" prefWidth="50.0" styleClass="searchButton" stylesheets="@Image/style.css" textAlignment="CENTER">
+        <Button fx:id="searchButton" layoutX="34.0" layoutY="95.0" mnemonicParsing="false" onAction="#loadSearchingButton" prefHeight="30.0" prefWidth="50.0" styleClass="searchButton" stylesheets="@Image/style.css" textAlignment="CENTER">
             <tooltip>
                 <Tooltip text="Search" />
             </tooltip>
         </Button>
-        <Button fx:id="noteButton" layoutX="34.0" layoutY="188.0" mnemonicParsing="false" onAction="#LoadNoteButton" prefHeight="30.0" prefWidth="50.0" styleClass="noteButton" stylesheets="@Image/style.css">
+        <Button fx:id="noteButton" layoutX="34.0" layoutY="188.0" mnemonicParsing="false" onAction="#loadNoteButton" prefHeight="30.0" prefWidth="50.0" styleClass="noteButton" stylesheets="@Image/style.css">
             <tooltip>
                 <Tooltip text="Hightlight" />
             </tooltip>
         </Button>
-        <Button fx:id="aboutUsButton" layoutX="34.0" layoutY="279.0" mnemonicParsing="false" onAction="#LoadAboutUsButton" prefHeight="30.0" prefWidth="50.0" styleClass="aboutUsButton" stylesheets="@Image/style.css">
+        <Button fx:id="aboutUsButton" layoutX="34.0" layoutY="279.0" mnemonicParsing="false" onAction="#loadAboutUsButton" prefHeight="30.0" prefWidth="50.0" styleClass="aboutUsButton" stylesheets="@Image/style.css">
             <tooltip>
                 <Tooltip text="About Us" />
             </tooltip>

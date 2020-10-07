@@ -1,13 +1,25 @@
 package database;
 
+import model.Word;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class HistoryDB extends Table {
     public HistoryDB() {
         table = "histories";
+    }
+
+    @Override
+    public void addWord(Word word) {
+        String explain = getExplain(word.getWord_target());
+        if (!explain.equals("")) {
+            deleteWord(word.getWord_target());
+        }
+        super.addWord(word);
     }
 
     public void deleteWord(String tager) {
@@ -26,22 +38,17 @@ public class HistoryDB extends Table {
         try {
             PreparedStatement pstmt = connection.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
+            while (rs.next()){
                 String string = rs.getString(Database.COLUME_WORD_TARGET);
                 arrayList.add(string);
+//                System.out.println(string);
             }
 
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+//        Collections.reverse(arrayList);
         return arrayList;
     }
 
-//    public static void main(String[] args) {
-//        HistoryDB historyDB = new HistoryDB();
-//        ArrayList<String> arrayList = historyDB.getWordFromHistoryDB();
-//        for(String string : arrayList){
-//            System.out.println(string);
-//        }
-//    }
 }

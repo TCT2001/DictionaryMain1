@@ -26,12 +26,15 @@ import translateapi.Translator;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class Searching_Pane_Controller implements Initializable {
     private DictionanryDB dictionanryDB = new DictionanryDB();
     private NotesDB notesDB = new NotesDB();
     private HistoryDB historyDB = new HistoryDB();
+    private List<String> listHistory = new ArrayList<>();
 
     @FXML
     private BorderPane BorderPaneId;
@@ -59,7 +62,7 @@ public class Searching_Pane_Controller implements Initializable {
     private Button edit;
     @FXML
     private ListView<String> listViewHistory;
-    private ObservableList observableList = FXCollections.observableArrayList();
+    ObservableList observableList = FXCollections.observableArrayList();
 
     public Searching_Pane_Controller() {
     }
@@ -71,7 +74,7 @@ public class Searching_Pane_Controller implements Initializable {
     }
 
     @FXML
-    public void LoadSearchingButton(ActionEvent actionEvent) throws IOException {
+    public void loadSearchingButton(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("../uidesign/Searching_Pane.fxml"));
         Scene scene = new Scene(root, 750, 500);
@@ -86,14 +89,14 @@ public class Searching_Pane_Controller implements Initializable {
     }
 
     @FXML
-    public void LoadNoteButton(ActionEvent actionEvent) {
+    public void loadNoteButton(ActionEvent actionEvent) {
         FXML_Loader test = new FXML_Loader();
         Pane view = test.getPane("Note_Pane");
         BorderPaneId.setCenter(view);
     }
 
     @FXML
-    public void LoadAboutUsButton(ActionEvent actionEvent) {
+    public void loadAboutUsButton(ActionEvent actionEvent) {
         FXML_Loader test = new FXML_Loader();
         Pane view = test.getPane("AboutUs_Pane");
         BorderPaneId.setCenter(view);
@@ -102,11 +105,20 @@ public class Searching_Pane_Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        LoadHistoryWord();
+        loadHistoryWord();
         speechButton.setVisible(false);
         note.setVisible(false);
         edit.setVisible(false);
+        txtWord.setFocusTraversable(false);
+        txtWord.setPromptText("Enter English Word"); //to set the hint text
+        txtWord.getParent().requestFocus();
         txtWord.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.compareTo("") == 0) {
+                listViewHistory.setVisible(true);
+            } else {
+                listViewHistory.setVisible(false);
+            }
+
             if (oldValue.compareTo(newValue) != 0) {
                 String explain = dictionanryDB.getExplain(txtWord.getText());
                 if (explain.compareTo("") == 0 || newValue.compareTo("") == 0) {
@@ -141,12 +153,6 @@ public class Searching_Pane_Controller implements Initializable {
     public void clickEdit(ActionEvent actionEvent) {
         System.out.println("clicker edit");
     }
-
-    @FXML
-    public void clickDelete(ActionEvent actionEvent) {
-        //TODO
-    }
-
     public void txtWordEnter(ActionEvent actionEvent) {
         String keyword = txtWord.getText();
         if (keyword.equals("")) {
@@ -174,19 +180,31 @@ public class Searching_Pane_Controller implements Initializable {
         if (!notesDB.isExist(keyword)) {
             noteButton.setVisible(true);
         }
+        loadHistoryWord();
     }
 
     //Load History Word Search
-    private void LoadHistoryWord() {
-        observableList.removeAll();
-        observableList.addAll(historyDB.getWordFromHistoryDB());
-        listViewHistory.getItems().addAll(observableList);
+    private void loadHistoryWord() {
+
+        observableList.removeAll(listHistory);
+        listHistory = historyDB.getWordFromHistoryDB();
+        observableList.addAll(listHistory);
+        listViewHistory.setItems(observableList);
         listViewHistory.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
             @Override
             public ListCell<String> call(ListView<String> stringListView) {
-                return new Searching_Pane_Controller.Cell();
+                return new Cell();
             }
         });
+        listViewHistory.setVisible(false);
+        listViewHistory.refresh();
+        System.out.println("???");
+        listViewHistory.setVisible(true);
+    }
+    private void forceListRefreshOn() {
+        ObservableList items = listViewHistory.getItems();
+        listViewHistory.setItems(null);
+//        items.re
     }
 
     class Cell extends ListCell<String> {
@@ -208,14 +226,14 @@ public class Searching_Pane_Controller implements Initializable {
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    System.out.println(lastItem + " : " + event);
+                    historyDB.deleteWord(lastItem);
+                    observableList.remove(lastItem);
+                    listViewHistory.setItems(null);
+                    listViewHistory.setItems(observableList);
                 }
             });
-//            hbox.setOnMouseMoved(mouseEvent -> {
-//                System.out.println(lastItem);
-//            });
+
             hbox.setOnMouseClicked(mouseEvent -> {
-                //TODO
                 txtWord.setText(lastItem);
                 System.out.println(lastItem);
             });

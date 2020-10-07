@@ -15,12 +15,13 @@ public class Table {
 
     //c
     public void addWord(Word word) {
-        String target = word.getWord_target();
+        String target = word.getWord_target().toLowerCase();
         String explain = word.getWord_explain();
         if (target.equals("") || explain.equals("")) {
             return;
         }
-        if (getExplain(target).equals("")) {
+        String expdb = getExplain(target);
+        if (expdb.equals("")) {
             String sql = "INSERT INTO " + table + "(word_target,word_explain) VALUES(?,?)";
             try {
                 PreparedStatement pstmt = connection.prepareStatement(sql);
@@ -29,7 +30,10 @@ public class Table {
                 pstmt.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
+                System.out.println("loi o day ?" +expdb);
             }
+        } else {
+            System.out.println(getExplain(target) +" ??");
         }
     }
 
