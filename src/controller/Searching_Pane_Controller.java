@@ -198,14 +198,9 @@ public class Searching_Pane_Controller implements Initializable {
         });
         listViewHistory.setVisible(false);
         listViewHistory.refresh();
-        System.out.println("???");
         listViewHistory.setVisible(true);
     }
-    private void forceListRefreshOn() {
-        ObservableList items = listViewHistory.getItems();
-        listViewHistory.setItems(null);
-//        items.re
-    }
+
 
     class Cell extends ListCell<String> {
         HBox hbox = new HBox(10);
@@ -235,7 +230,6 @@ public class Searching_Pane_Controller implements Initializable {
 
             hbox.setOnMouseClicked(mouseEvent -> {
                 txtWord.setText(lastItem);
-                System.out.println(lastItem);
             });
         }
 

@@ -1,6 +1,6 @@
 package database;
 
-import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,6 +31,11 @@ public class DictionanryDB extends Table {
             ex.printStackTrace();
         }
         return null;
+    }
+
+    public static void main(String[] args) {
+        DictionanryDB dictionanryDB = new DictionanryDB();
+        dictionanryDB.updateExplain("fuck","fuckedited");
     }
 
 }
