@@ -41,17 +41,11 @@ public class Searching_Pane_Controller implements Initializable {
     @FXML
     private Text txtTarget;
     @FXML
-    private Text txtPronoune;
-    @FXML
     private Text txtDefinition;
     @FXML
     private Button speechButton;
     @FXML
     private TextField txtWord;
-    @FXML
-    private Button searchButton;
-    @FXML
-    private Button editButton;
     @FXML
     private Button noteButton;
     @FXML
@@ -161,7 +155,6 @@ public class Searching_Pane_Controller implements Initializable {
         txtDefinition.setVisible(false);
         txtEdit.setVisible(true);
         txtEdit.setText(txtDefinition.getText());
-        System.out.println("clicker edit");
     }
 
 
@@ -214,7 +207,6 @@ public class Searching_Pane_Controller implements Initializable {
     }
 
     public void onSave(ActionEvent actionEvent) {
-        System.out.println("?");
         String text = txtEdit.getText();
         if (!text.equals("")) {
             dictionanryDB.updateExplain(txtTarget.getText(),text);

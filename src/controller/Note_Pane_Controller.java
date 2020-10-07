@@ -58,7 +58,6 @@ public class Note_Pane_Controller implements Initializable {
             button.setPrefSize(25, 20);
             button.setFont(new Font(12));
             button.setStyle("-fx-background-image: url('/uidesign/Image/delete.png');");
-            //hbox.getChildren().addAll(text, pane, button);
             hbox.getChildren().addAll(button, text, pane);
             HBox.setHgrow(pane, Priority.ALWAYS);
             button.setOnAction(new EventHandler<ActionEvent>() {

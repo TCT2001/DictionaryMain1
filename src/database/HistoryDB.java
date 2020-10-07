@@ -41,13 +41,11 @@ public class HistoryDB extends Table {
             while (rs.next()){
                 String string = rs.getString(Database.COLUME_WORD_TARGET);
                 arrayList.add(string);
-//                System.out.println(string);
             }
 
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-//        Collections.reverse(arrayList);
         return arrayList;
     }
 

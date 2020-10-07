@@ -42,6 +42,7 @@ public class Table {
         String sql = "SELECT " + Database.COLUME_WORD_EXPLAIN + " FROM " +
                 table + " WHERE " + Database.COLUME_WORD_TARGET + " = ?";
         try {
+
             PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setString(1, target);
             ResultSet rs = pstmt.executeQuery();
@@ -94,8 +95,6 @@ public class Table {
     @Override
     protected void finalize() throws Throwable {
         super.finalize();
-        //Phat Sinh Loi
-        connection.close();
         connection = null;
     }
 
