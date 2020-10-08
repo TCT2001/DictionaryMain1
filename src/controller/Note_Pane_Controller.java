@@ -1,6 +1,5 @@
 package controller;
 
-import database.NotesDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,7 +21,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Note_Pane_Controller implements Initializable {
-    private NotesDB notesDB = new NotesDB();
+//    private NotesDB notesDB = new NotesDB();
     private ObservableList observableList = FXCollections.observableArrayList();
     @FXML
     private ListView<String> listView;
@@ -35,7 +34,7 @@ public class Note_Pane_Controller implements Initializable {
 
     private void LoadNoteWord() {
         observableList.removeAll();
-        observableList.addAll(notesDB.getWordFromNoteDB());
+//        observableList.addAll(notesDB.getWordFromNoteDB());
         listView.getItems().addAll(observableList);
         listView.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
             @Override
@@ -63,14 +62,14 @@ public class Note_Pane_Controller implements Initializable {
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    notesDB.deleteWord(lastItem);
+//                    notesDB.deleteWord(lastItem);
                     observableList.remove(lastItem);
                     listView.setItems(null);
                     listView.setItems(observableList);
                 }
             });
             hbox.setOnMouseClicked(mouseEvent -> {
-                textDifinitionInNote.setText(lastItem+"\n"+notesDB.getExplain(lastItem));
+//                textDifinitionInNote.setText(lastItem+"\n"+notesDB.getExplain(lastItem));
             });
         }
 

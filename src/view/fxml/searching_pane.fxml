@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.View">
+    <children>
+        <BorderPane fx:id="borderPane" layoutX="114.0" layoutY="55.0" prefHeight="320.0" prefWidth="610.0">
+            <center>
+                <AnchorPane prefHeight="325.0" prefWidth="583.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <!--                        <TextField fx:id="txtWord" alignment="CENTER" layoutX="24.0" layoutY="6.0"-->
+                        <!--                                   onAction="#txtWordEnter" prefHeight="30.0" prefWidth="195.0">-->
+                        <!--                            <font>-->
+                        <!--                                <Font size="14.0"/>-->
+                        <!--                            </font>-->
+                        <!--                        </TextField>-->
+                        <TextField fx:id="txtWord" alignment="CENTER" layoutX="24.0" layoutY="6.0" prefHeight="30.0" prefWidth="195.0">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </TextField>
+                        <ScrollPane layoutX="228.0" layoutY="8.0" prefHeight="302.0" prefWidth="338.0">
+                            <content>
+                                <AnchorPane prefHeight="298.0" prefWidth="334.0">
+                                    <children>
+
+                                        <Text fx:id="txtTarget" layoutX="6.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" visible="true" wrappingWidth="267.74365234375">
+                                            <font>
+                                                <Font name="System Bold" size="13.0" />
+                                            </font>
+                                        </Text>
+                                        <Text fx:id="txtDefinition" layoutX="7.0" layoutY="38.0" strokeType="OUTSIDE" visible="true" wrappingWidth="319.38427734375" />
+                                        <TextArea fx:id="txtEdit" layoutY="37.0" prefHeight="262.0" prefWidth="336.0" visible="false" />
+                                        <Button fx:id="btnSaveEdit" layoutX="150.0" layoutY="0.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="Button" visible="false">
+                                            <font>
+                                                <Font size="12.0" />
+                                            </font>
+                                        </Button>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </ScrollPane>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#74a174" height="326.0" layoutY="-1.0" stroke="#74a174" strokeType="INSIDE" width="24.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#74a174" height="16.0" layoutY="-7.0" stroke="#74a174" strokeType="INSIDE" width="587.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#74a174" height="16.0" layoutX="1.0" layoutY="309.0" stroke="#74a174" strokeType="INSIDE" width="587.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#74a174" height="326.0" layoutX="564.0" layoutY="-3.0" stroke="#74a174" strokeType="INSIDE" width="24.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#74a174" height="323.0" layoutX="219.0" layoutY="1.0" stroke="#74a174" strokeType="INSIDE" width="9.0" />
+                        <Button fx:id="btnSpeck" layoutX="194.0" layoutY="9.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="speechButton" stylesheets="@../image/style.css" visible="false">
+                            <tooltip>
+                                <Tooltip text="Speak" />
+                            </tooltip>
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="btnNotes" layoutX="535.0" layoutY="12.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="note" stylesheets="@../image/style.css" visible="false">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="btnEdit" layoutX="506.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="edit" stylesheets="@../image/style.css" visible="false">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </Button>
+                        <ListView fx:id="listViewHistory" layoutX="24.0" layoutY="35.0" prefHeight="275.0" prefWidth="195.0" />
+                    </children>
+                </AnchorPane>
+            </center>
+        </BorderPane>
+        <Text fill="#1130e1" layoutX="212.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ENGLISH VIETNAMESE DICTIONARY" textAlignment="CENTER">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Text>
+        <Text layoutX="14.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Object Oriented Programming" />
+        <Button fx:id="btnSearchPane" layoutX="34.0" layoutY="95.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" styleClass="searchButton" stylesheets="@../image/style.css" textAlignment="CENTER">
+            <tooltip>
+                <Tooltip text="Search" />
+            </tooltip>
+            <font>
+                <Font size="12.0" />
+            </font>
+        </Button>
+        <Button fx:id="btnNotesPane" layoutX="34.0" layoutY="188.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" styleClass="noteButton" stylesheets="@../image/style.css">
+            <tooltip>
+                <Tooltip text="Hightlight" />
+            </tooltip>
+            <font>
+                <Font size="12.0" />
+            </font>
+        </Button>
+        <Button fx:id="btnAboutUsPane" layoutX="34.0" layoutY="279.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" styleClass="btnAboutUs" stylesheets="@../image/style.css">
+            <tooltip>
+                <Tooltip text="About Us" />
+            </tooltip>
+            <font>
+                <Font size="12.0" />
+            </font>
+        </Button>
+        <ImageView fitHeight="32.0" fitWidth="40.0" layoutX="175.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../image/dictionary1.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="40.0" fitWidth="65.0" layoutX="59.0" layoutY="427.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../image/dic1.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="40.0" fitWidth="65.0" layoutX="383.0" layoutY="427.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../image/dictionary.png" />
+            </image>
+        </ImageView>
+        <Text layoutX="300.0" layoutY="414.0" strokeType="OUTSIDE" strokeWidth="0.0" text="© Copyright 2020. All Rights Reserved." />
+        <Text layoutX="597.0" layoutY="414.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Developed by Team Seven" />
+        <ImageView fitHeight="40.0" fitWidth="65.0" layoutX="643.0" layoutY="427.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../image/dic2.png" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>

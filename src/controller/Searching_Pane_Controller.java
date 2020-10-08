@@ -8,8 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.text.Font;
 import javafx.util.Callback;
-import mainthread.FXML_Loader;
-import database.*;
+import helper.FXML_Loader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,9 +20,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.Word;
-import speech.Speech;
-import translateapi.Translator;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,9 +28,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class Searching_Pane_Controller implements Initializable {
-    private DictionanryDB dictionanryDB = new DictionanryDB();
-    private NotesDB notesDB = new NotesDB();
-    private HistoryDB historyDB = new HistoryDB();
+//    private DictionanryDB dictionanryDB = new DictionanryDB();
+//    private NotesDB notesDB = new NotesDB();
+//    private HistoryDB historyDB = new HistoryDB();
     private List<String> listHistory = new ArrayList<>();
 
     @FXML
@@ -45,8 +41,8 @@ public class Searching_Pane_Controller implements Initializable {
     private Text txtDefinition;
     @FXML
     private Button speechButton;
-    @FXML
-    private TextField txtWord;
+//    @FXML
+//    private TextField txtWord;
     @FXML
     private Button noteButton;
     @FXML
@@ -69,15 +65,15 @@ public class Searching_Pane_Controller implements Initializable {
     }
 
 
-    @FXML
-    public void Speck(ActionEvent actionEvent) {
-        Speech.speck(txtWord.getText());
-    }
+//    @FXML
+//    public void speck(ActionEvent actionEvent) {
+//        Speech.speck(txtWord.getText());
+//    }
 
     @FXML
     public void loadSearchingButton(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("../uidesign/Searching_Pane.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../view/fxml/searching_pane.fxml"));
         Scene scene = new Scene(root, 750, 500);
         stage.setScene(scene);
     }
@@ -108,43 +104,43 @@ public class Searching_Pane_Controller implements Initializable {
         speechButton.setVisible(false);
         note.setVisible(false);
         edit.setVisible(false);
-        txtWord.setFocusTraversable(false);
-        txtWord.setPromptText("Enter English Word"); //to set the hint text
-        txtWord.getParent().requestFocus();
-        txtWord.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.compareTo("") == 0) {
-                listViewHistory.setVisible(true);
-            } else {
-                listViewHistory.setVisible(false);
-            }
-
-            if (oldValue.compareTo(newValue) != 0) {
-                String explain = dictionanryDB.getExplain(txtWord.getText());
-                if (explain.compareTo("") == 0 || newValue.compareTo("") == 0) {
-                    txtTarget.setText("");
-                    txtDefinition.setText("");
-                    speechButton.setVisible(false);
-                    note.setVisible(false);
-                    edit.setVisible(false);
-
-                } else {
-                    txtTarget.setText(txtWord.getText());
-                    txtDefinition.setText(explain);
-                    //add thoi
-                    speechButton.setVisible(true);
-                    if (notesDB.getExplain(txtTarget.getText()).compareTo("") == 0) {
-                        note.setVisible(true);
-                    } else note.setVisible(false);
-                    edit.setVisible(true);
-                }
-            }
-        });
+//        txtWord.setFocusTraversable(false);
+//        txtWord.setPromptText("Enter English Word"); //to set the hint text
+//        txtWord.getParent().requestFocus();
+//        txtWord.textProperty().addListener((observable, oldValue, newValue) -> {
+//            if (newValue.compareTo("") == 0) {
+//                listViewHistory.setVisible(true);
+//            } else {
+//                listViewHistory.setVisible(false);
+//            }
+//
+//            if (oldValue.compareTo(newValue) != 0) {
+//                String explain = dictionanryDB.getExplain(txtWord.getText());
+//                if (explain.compareTo("") == 0 || newValue.compareTo("") == 0) {
+//                    txtTarget.setText("");
+//                    txtDefinition.setText("");
+//                    speechButton.setVisible(false);
+//                    note.setVisible(false);
+//                    edit.setVisible(false);
+//
+//                } else {
+//                    txtTarget.setText(txtWord.getText());
+//                    txtDefinition.setText(explain);
+//                    //add thoi
+//                    speechButton.setVisible(true);
+//                    if (notesDB.getExplain(txtTarget.getText()).compareTo("") == 0) {
+//                        note.setVisible(true);
+//                    } else note.setVisible(false);
+//                    edit.setVisible(true);
+//                }
+//            }
+//        });
 
     }
 
     @FXML
     public void clickNote(ActionEvent actionEvent) {
-        notesDB.addWord(new Word(txtTarget.getText(), txtDefinition.getText()));
+//        notesDB.addWord(new Word(txtTarget.getText(), txtDefinition.getText()));
         note.setVisible(false);
     }
 
@@ -157,41 +153,41 @@ public class Searching_Pane_Controller implements Initializable {
     }
 
 
-    public void txtWordEnter(ActionEvent actionEvent) {
-        String keyword = txtWord.getText();
-        if (keyword.equals("")) {
-            txtDefinition.setText("");
-            return;
-        }
-        String explain = dictionanryDB.getExplain(keyword);
-        if (explain.compareTo("") == 0) {
-            //dung api network thi dung multithread
-            explain = Translator.translate(keyword);
-            //dung api search tu
-            if (explain.equals("")) {
-                txtTarget.setText("Network Error !");
-                return;
-            }
-            dictionanryDB.addWord(new Word(keyword, explain));
-        }
-        txtTarget.setText(keyword);
-        // txtWord.setText("");
-        txtDefinition.setText(explain);
-        //add thoi
-        historyDB.addWord(new Word(keyword, explain));
-        speechButton.setVisible(true);
-//        editButton.setVisible(true);
-        if (!notesDB.isExist(keyword)) {
-            noteButton.setVisible(true);
-        }
-        loadHistoryWord();
-    }
+//    public void txtWordEnter(ActionEvent actionEvent) {
+//        String keyword = txtWord.getText();
+//        if (keyword.equals("")) {
+//            txtDefinition.setText("");
+//            return;
+//        }
+//        String explain = dictionanryDB.getExplain(keyword);
+//        if (explain.compareTo("") == 0) {
+//            //dung api network thi dung multithread
+//            explain = Translator.translate(keyword);
+//            //dung api search tu
+//            if (explain.equals("")) {
+//                txtTarget.setText("Network Error !");
+//                return;
+//            }
+//            dictionanryDB.addWord(new Word(keyword, explain));
+//        }
+//        txtTarget.setText(keyword);
+//        // txtWord.setText("");
+//        txtDefinition.setText(explain);
+//        //add thoi
+//        historyDB.addWord(new Word(keyword, explain));
+//        speechButton.setVisible(true);
+////        editButton.setVisible(true);
+//        if (!notesDB.isExist(keyword)) {
+//            noteButton.setVisible(true);
+//        }
+//        loadHistoryWord();
+//    }
 
     //Load History Word Search
     private void loadHistoryWord() {
 
         observableList.removeAll(listHistory);
-        listHistory = historyDB.getWordFromHistoryDB();
+//        listHistory = historyDB.getWordFromHistoryDB();
         observableList.addAll(listHistory);
         listViewHistory.setItems(observableList);
         listViewHistory.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
@@ -200,15 +196,12 @@ public class Searching_Pane_Controller implements Initializable {
                 return new Cell();
             }
         });
-        listViewHistory.setVisible(false);
-        listViewHistory.refresh();
-        listViewHistory.setVisible(true);
     }
 
     public void onSave(ActionEvent actionEvent) {
         String text = txtEdit.getText();
         if (!text.equals("")) {
-            dictionanryDB.updateExplain(txtTarget.getText(),text);
+//            dictionanryDB.updateExplain(txtTarget.getText(),text);
             txtDefinition.setText(text);
         }
         btnSave.setVisible(false);
@@ -239,16 +232,16 @@ public class Searching_Pane_Controller implements Initializable {
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    historyDB.deleteWord(lastItem);
+//                    historyDB.deleteWord(lastItem);
                     observableList.remove(lastItem);
                     listViewHistory.setItems(null);
                     listViewHistory.setItems(observableList);
                 }
             });
 
-            hbox.setOnMouseClicked(mouseEvent -> {
-                txtWord.setText(lastItem);
-            });
+//            hbox.setOnMouseClicked(mouseEvent -> {
+//                txtWord.setText(lastItem);
+//            });
         }
 
         @Override
