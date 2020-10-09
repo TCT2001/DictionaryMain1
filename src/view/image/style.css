@@ -63,17 +63,17 @@
 }
 
 .note {
-    -fx-background-image: url("NoteTinyIcon.png")
+    -fx-background-image: url("notes.png")
 }
 
 .note:hover {
-    -fx-background-image: url("NoteTinyIcon.png");
+    -fx-background-image: url("notes.png");
     -fx-border-color: #5181cf;
     -fx-border-width: 2;
 }
 
 .note:pressed {
-    -fx-background-image: url("NoteTinyIcon.png");
+    -fx-background-image: url("notes.png");
     -fx-border-color: #0b4bb3;
     -fx-border-width: 2;
 }

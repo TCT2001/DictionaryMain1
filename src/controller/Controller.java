@@ -118,5 +118,8 @@ public class Controller {
         return dictionaryDAO.isExists(word, true);
     }
 
+    public void removeNotes(String word) {
+        dictionaryDAO.deleteWord(word,true);
+    }
 
 }

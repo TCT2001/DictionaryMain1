@@ -67,9 +67,14 @@ public class SearchingPane implements Popup, ShowText, UpdateListview {
         //when click note
         btnNotes.setOnAction(actionEvent -> {
             //add action
+            //ko co thi add
             if (!controller.hasNotes(txtWord.getText().trim())) {
                 controller.addNotes(txtWord.getText());
                 btnNotes.setStyle("-fx-background-image: url('/view/image/noted.png');");
+            } else {
+                //co thi remove
+                controller.removeNotes(txtWord.getText());
+                btnNotes.setStyle("-fx-background-image: url('/view/image/notes.png');");
             }
         });
 
@@ -144,7 +149,7 @@ public class SearchingPane implements Popup, ShowText, UpdateListview {
         if (isVisible && controller.hasNotes(txtWord.getText())) {
             btnNotes.setStyle("-fx-background-image: url('/view/image/noted.png');");
         } else {
-            btnNotes.setStyle("-fx-background-image: url('/view/image/NoteTinyIcon.png');");
+            btnNotes.setStyle("-fx-background-image: url('/view/image/notes.png');");
         }
     }
 
