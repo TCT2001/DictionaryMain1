@@ -27,5 +27,4 @@ public class Word {
         this.word_explain = word_explain;
     }
 
-
 }

@@ -10,7 +10,6 @@ public class CellNotes extends Cell {
         button.setStyle("-fx-background-image: url('/view/image/noted.png');");
     }
 
-    //dung interface goi may cai daubuoi
     @Override
     protected void actionHBoxClick() {
         super.actionHBoxClick();

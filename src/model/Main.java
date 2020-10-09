@@ -9,17 +9,18 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    private final int width = 786;
+    private final int height = 486;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource());
-//        loader.setController(Controler.class);
         Parent root = FXMLLoader.load(getClass().getResource("../view/fxml/searching_pane.fxml"));
-        Scene scene = new Scene(root, 800, 500);
+        Scene scene = new Scene(root, width, height);
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
-
 
 
     public static void main(String[] args) {

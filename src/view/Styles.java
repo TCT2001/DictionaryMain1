@@ -7,7 +7,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
 /**
- * style for textcomplele
+ * style for text_complete.
  */
 public class Styles {
     public static TextFlow buildTextFlow(String text, String filter) {

@@ -10,15 +10,15 @@ import view.SearchingPane;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
-public class Controler {
-    private static Controler controler = null;
-    private DictionaryDAO dictionaryDAO = new DictionaryDAO();
+public class Controller {
+    private static Controller controller = null;
+    private final DictionaryDAO dictionaryDAO = new DictionaryDAO();
 
-    public static Controler getControler() {
-        if (controler == null) {
-            controler = new Controler();
+    public static Controller getController() {
+        if (controller == null) {
+            controller = new Controller();
         }
-        return controler;
+        return controller;
     }
 
     public void suggestionsText(String text) {
@@ -62,22 +62,20 @@ public class Controler {
                         @Override
                         protected Void call() throws Exception {
                             final CountDownLatch latch = new CountDownLatch(1);
-                            Platform.runLater(new Runnable() {
-                                @Override
-                                public void run() {
-                                    try {
-                                        String explain = Translator.translate(text);
-                                        if (!explain.equals("")) {
-                                            showText.showExplain(explain);
-                                            dictionaryDAO.addWord(new Word(text, explain));
-                                            dictionaryDAO.addWord(text, false);
-                                            updateListview.addItemInListView(text);
-                                        } else {
-                                            showText.showExplain("Network Error !");
-                                        }
-                                    } finally {
-                                        latch.countDown();
+                            //Platform.runLater(new Runnable() {
+                            Platform.runLater(() -> {
+                                try {
+                                    String explain = Translator.translate(text);
+                                    if (!explain.equals("")) {
+                                        showText.showExplain(explain);
+                                        dictionaryDAO.addWord(new Word(text, explain));
+                                        dictionaryDAO.addWord(text, false);
+                                        updateListview.addItemInListView(text);
+                                    } else {
+                                        showText.showExplain("Network Error !");
                                     }
+                                } finally {
+                                    latch.countDown();
                                 }
                             });
                             latch.await();
@@ -116,8 +114,8 @@ public class Controler {
         return dictionaryDAO.getExplain(target);
     }
 
-    public boolean hasNotes(String word){
-        return dictionaryDAO.isExists(word,true);
+    public boolean hasNotes(String word) {
+        return dictionaryDAO.isExists(word, true);
     }
 
 

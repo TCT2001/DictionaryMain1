@@ -35,7 +35,7 @@
                                         <Font size="14.0"/>
                                     </font>
                                 </Text>
-                                <Text fx:id="txtDifinition" layoutX="10.0" layoutY="33.0" strokeType="OUTSIDE"
+                                <Text fx:id="txtDefinition" layoutX="10.0" layoutY="33.0" strokeType="OUTSIDE"
                                       strokeWidth="0.0" wrappingWidth="311.7294921875"/>
                             </children>
                         </AnchorPane>

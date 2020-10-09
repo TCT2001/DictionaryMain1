@@ -20,7 +20,7 @@ public class ViewSearchPane implements Initializable {
     @FXML
     private Text txtDefinition;
     @FXML
-    private Button btnSpeck;
+    private Button btnSpeak;
     @FXML
     private TextField txtWord;
     @FXML
@@ -55,7 +55,7 @@ public class ViewSearchPane implements Initializable {
         SearchingPane.txtEdit = txtEdit;
         SearchingPane.btnNotes = btnNotes;
         SearchingPane.btnEdit = btnEdit;
-        SearchingPane.btnSpeck = btnSpeck;
+        SearchingPane.btnSpeak = btnSpeak;
         SearchingPane.btnAboutUsPane = btnAboutUsPane;
         SearchingPane.btnNotesPane = btnNotesPane;
         SearchingPane.btnSaveEdit = btnSaveEdit;

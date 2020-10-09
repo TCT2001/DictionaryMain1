@@ -1,6 +1,6 @@
 package view;
 
-import controller.Controler;
+import controller.Controller;
 import helper.FXML_Loader;
 import helper.Popup;
 import helper.ShowText;
@@ -24,14 +24,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class SearchingPane implements Popup, ShowText, UpdateListview {
-    private static ContextMenu entriesPopup = new ContextMenu();
-    private static Controler controler = Controler.getControler();
+    private static final ContextMenu entriesPopup = new ContextMenu();
+    private static final Controller controller = Controller.getController();
 
     static TextField txtWord;
     static BorderPane borderPane;
     static Text txtTarget;
     static Text txtDefinition;
-    static Button btnSpeck;
+    static Button btnSpeak;
     static Button btnNotes;
     static Button btnAboutUs;
     static Button btnEdit;
@@ -48,27 +48,27 @@ public class SearchingPane implements Popup, ShowText, UpdateListview {
             entriesPopup.hide();
         });
         txtWord.textProperty().addListener((observableValue, oldvalue, newvalue) -> {
-            //auto complete text and showPopup text defination
-            controler.suggestionsText(newvalue);
-            controler.showExplainWord(newvalue);
+            //auto complete text and showPopup text definition
+            controller.suggestionsText(newvalue);
+            controller.showExplainWord(newvalue);
         });
         //after input text
         txtWord.setOnAction(actionEvent -> {
             //add history or using translate api
-            controler.translateWord(txtWord.getText());
+            controller.translateWord(txtWord.getText());
         });
 
         //when click speck
-        btnSpeck.setOnAction(actionEvent -> {
+        btnSpeak.setOnAction(actionEvent -> {
             //speck
-            controler.speck(txtWord.getText());
+            controller.speck(txtWord.getText());
         });
 
         //when click note
         btnNotes.setOnAction(actionEvent -> {
             //add action
-            if (!controler.hasNotes(txtWord.getText().trim())) {
-                controler.addNotes(txtWord.getText());
+            if (!controller.hasNotes(txtWord.getText().trim())) {
+                controller.addNotes(txtWord.getText());
                 btnNotes.setStyle("-fx-background-image: url('/view/image/noted.png');");
             }
         });
@@ -81,11 +81,12 @@ public class SearchingPane implements Popup, ShowText, UpdateListview {
             txtEdit.setVisible(true);
             txtDefinition.setVisible(false);
         });
+
         //after edit
         btnSaveEdit.setOnAction(actionEvent -> {
             if (!txtEdit.getText().equals("")) {
                 txtDefinition.setText(txtEdit.getText());
-                controler.updateWord(txtTarget.getText(), txtDefinition.getText());
+                controller.updateWord(txtTarget.getText(), txtDefinition.getText());
             }
             btnSaveEdit.setVisible(false);
             txtEdit.setVisible(false);
@@ -93,10 +94,7 @@ public class SearchingPane implements Popup, ShowText, UpdateListview {
 
         });
 
-
-        //click pane
-
-        //oprn about us creen
+        //open about us screen
         btnAboutUsPane.setOnAction(actionEvent -> {
             FXML_Loader test = new FXML_Loader();
             Pane view = test.getPane("AboutUs_Pane");
@@ -125,13 +123,13 @@ public class SearchingPane implements Popup, ShowText, UpdateListview {
         });
 
 
-        //fill listviewhistory
+        //fill listViewHistory
         fillListView();
     }
 
     private static void fillListView() {
         ObservableList observableList = FXCollections.observableArrayList();
-        observableList.addAll(controler.getListHistory());
+        observableList.addAll(controller.getListHistory());
         listViewHistory.setItems(observableList);
         listViewHistory.setCellFactory(stringListView -> {
             return new CellHistory();
@@ -139,14 +137,14 @@ public class SearchingPane implements Popup, ShowText, UpdateListview {
     }
 
     //set visible button
-    private void setVisibleButon(boolean isVisible) {
-        btnSpeck.setVisible(isVisible);
+    private void setVisibleButton(boolean isVisible) {
+        btnSpeak.setVisible(isVisible);
         btnEdit.setVisible(isVisible);
         btnNotes.setVisible(isVisible);
-        if (isVisible && controler.hasNotes(txtWord.getText())) {
+        if (isVisible && controller.hasNotes(txtWord.getText())) {
             btnNotes.setStyle("-fx-background-image: url('/view/image/noted.png');");
         } else {
-            btnNotes.setStyle("-fx-background-image: url('/view/image/Note.png');");
+            btnNotes.setStyle("-fx-background-image: url('/view/image/NoteTinyIcon.png');");
         }
     }
 
@@ -180,7 +178,6 @@ public class SearchingPane implements Popup, ShowText, UpdateListview {
     }
 
 
-
     @Override
     public void showExplain(String text) {
         txtDefinition.setText(text);
@@ -188,9 +185,8 @@ public class SearchingPane implements Popup, ShowText, UpdateListview {
             return;
         }
         txtTarget.setText(txtWord.getText());
-
-        setVisibleButon(true);
-        //setgraphis btnotes
+        setVisibleButton(true);
+        //set graphics for btnNotes
     }
 
     @Override
@@ -203,7 +199,7 @@ public class SearchingPane implements Popup, ShowText, UpdateListview {
         if (!txtDefinition.getText().equals("")) {
             txtDefinition.setText("");
             txtTarget.setText("");
-            setVisibleButon(false);
+            setVisibleButton(false);
 
         }
     }

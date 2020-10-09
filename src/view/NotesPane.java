@@ -1,6 +1,6 @@
 package view;
 
-import controller.Controler;
+import controller.Controller;
 import helper.ShowText;
 import helper.UpdateListview;
 import javafx.collections.FXCollections;
@@ -20,23 +20,23 @@ public class NotesPane implements Initializable, ShowText, UpdateListview {
     @FXML
     private Text txtTarget;
     @FXML
-    private Text txtDifinition;
-    private Controler controler = new Controler();
+    private Text txtDefinition;
+    private final Controller controller = new Controller();
     private static ListView<String> slvNotes;
     private static Text stxtTarget;
-    private static Text stxtDifinition;
+    private static Text sTxtDefinition;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         slvNotes = lvNotes;
         stxtTarget = txtTarget;
-        stxtDifinition = txtDifinition;
+        sTxtDefinition = txtDefinition;
         fillListView();
     }
 
     private void fillListView() {
         ObservableList observableList = FXCollections.observableArrayList();
-        observableList.addAll(controler.getListNotes());
+        observableList.addAll(controller.getListNotes());
         slvNotes.setItems(observableList);
         slvNotes.setCellFactory(stringListView -> {
             return new CellNotes();
@@ -57,7 +57,7 @@ public class NotesPane implements Initializable, ShowText, UpdateListview {
     @Override
     public void showTarget(String text) {
         stxtTarget.setText(text);
-        stxtDifinition.setText(controler.getExplain(text));
+        sTxtDefinition.setText(controller.getExplain(text));
     }
 
     @Override

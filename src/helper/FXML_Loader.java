@@ -9,10 +9,13 @@ import java.io.IOException;
 import java.net.URL;
 
 
-
 public class FXML_Loader {
     private Pane view;
 
+    /**
+     *To get new Pane.
+     *From fileName
+     */
     public Pane getPane(String fileName) {
         URL url = Main.class.getResource("../view/fxml/" + fileName + ".fxml");
         try {

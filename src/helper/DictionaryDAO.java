@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DictionaryDAO {
-    private Connection connection = Database.getDatabase();
+    private final Connection connection = Database.getDatabase();
 
 
     //dictionary table
@@ -19,7 +19,7 @@ public class DictionaryDAO {
     /**
      * add word to dictionary table
      *
-     * @param word
+     * @param word Word
      */
     public void addWord(Word word) {
         String target = word.getWord_target().toLowerCase();
@@ -44,11 +44,11 @@ public class DictionaryDAO {
     /**
      * get explain of target in dictionary table
      *
-     * @param target
+     * @param target String
      */
     public String getExplain(String target) {
-        String sql = "SELECT " + Database.COLUME_WORD_EXPLAIN + " FROM dictionary WHERE "
-                + Database.COLUME_WORD_TARGET + " = ?";
+        String sql = "SELECT " + Database.COLUMN_WORD_EXPLAIN + " FROM dictionary WHERE "
+                + Database.COLUMN_WORD_TARGET + " = ?";
         try {
 
             PreparedStatement pstmt = connection.prepareStatement(sql);
@@ -57,7 +57,7 @@ public class DictionaryDAO {
             if (rs.isClosed()) {
                 return "";
             }
-            return rs.getString(Database.COLUME_WORD_EXPLAIN);
+            return rs.getString(Database.COLUMN_WORD_EXPLAIN);
         } catch (SQLException ex) {
             ex.printStackTrace();
             return "";
@@ -67,11 +67,11 @@ public class DictionaryDAO {
     /**
      * update explain using when edit
      *
-     * @param target
+     * @param target String
      */
     public void updateExplain(String target, String explain) {
-        String sql = "UPDATE dictionary SET " + Database.COLUME_WORD_EXPLAIN +
-                " = ? " + "WHERE " + Database.COLUME_WORD_TARGET + " = ?";
+        String sql = "UPDATE dictionary SET " + Database.COLUMN_WORD_EXPLAIN +
+                " = ? " + "WHERE " + Database.COLUMN_WORD_TARGET + " = ?";
         try {
             PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setString(1, explain);
@@ -85,12 +85,11 @@ public class DictionaryDAO {
     /**
      * get list target word using for search text hint
      *
-     * @param text
+     * @param text String
      */
     public List<String> getWordHint(String text) {
         List<String> res = new ArrayList<>();
         if (text.contains("\'")) {
-            //err sql query
             return res;
         }
         String sql = "SELECT *\n" +
@@ -100,8 +99,8 @@ public class DictionaryDAO {
             PreparedStatement pstmt = connection.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                if (rs.getString(Database.COLUME_WORD_TARGET).compareTo("") != 0) {
-                    res.add(rs.getString(Database.COLUME_WORD_TARGET));
+                if (rs.getString(Database.COLUMN_WORD_TARGET).compareTo("") != 0) {
+                    res.add(rs.getString(Database.COLUMN_WORD_TARGET));
                 }
             }
             return res;
@@ -111,12 +110,10 @@ public class DictionaryDAO {
         return res;
     }
 
-    //notes table
-
     /**
      * add word to notes table or histories table
      *
-     * @param word
+     * @param word Word
      */
     public void addWord(String word, boolean isNotesTable) {
         if (word.equals("") || isExists(word, isNotesTable)) {
@@ -136,18 +133,19 @@ public class DictionaryDAO {
     /**
      * check word is in table
      *
-     * @param word
+     * @param word Word
      */
     public boolean isExists(String word, boolean isNotesTable) {
         String table = isNotesTable ? "notes" : "histories";
         String sql = "SELECT * FROM " +
-                table + " WHERE " + Database.COLUME_WORD_TARGET + " = ?";
+                table + " WHERE " + Database.COLUMN_WORD_TARGET + " = ?";
         try {
             PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setString(1, word);
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.isClosed()) {
-                return false;
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.isClosed()) {
+                    return false;
+                }
             }
             return true;
         } catch (SQLException ex) {
@@ -161,13 +159,13 @@ public class DictionaryDAO {
      */
     public List<String> getAllWord(boolean isNotesTable) {
         String table = isNotesTable ? "notes" : "histories";
-        String sql = "SELECT " + Database.COLUME_WORD_TARGET + " FROM " + table;
+        String sql = "SELECT " + Database.COLUMN_WORD_TARGET + " FROM " + table;
         ArrayList<String> arrayList = new ArrayList<>();
         try {
             PreparedStatement pstmt = connection.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                String string = rs.getString(Database.COLUME_WORD_TARGET);
+                String string = rs.getString(Database.COLUMN_WORD_TARGET);
                 arrayList.add(string);
             }
         } catch (SQLException ex) {
@@ -179,11 +177,11 @@ public class DictionaryDAO {
     /**
      * delete word to notes table or histories table
      *
-     * @param target
+     * @param target String
      */
     public void deleteWord(String target, boolean isNotesTable) {
         String table = isNotesTable ? "notes" : "histories";
-        String sql = "DELETE FROM " + table + " WHERE " + Database.COLUME_WORD_TARGET + " = ?";
+        String sql = "DELETE FROM " + table + " WHERE " + Database.COLUMN_WORD_TARGET + " = ?";
         try {
             PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setString(1, target);
