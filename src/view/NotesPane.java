@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
-import view.cell.CellHistory;
 import view.cell.CellNotes;
 
 import java.net.URL;

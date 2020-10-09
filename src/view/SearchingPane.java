@@ -43,6 +43,7 @@ public class SearchingPane implements Popup, ShowText, UpdateListview {
     static Button btnSearchPane;
 
     static void init() {
+        //while input
         txtWord.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
             entriesPopup.hide();
         });
@@ -66,8 +67,10 @@ public class SearchingPane implements Popup, ShowText, UpdateListview {
         //when click note
         btnNotes.setOnAction(actionEvent -> {
             //add action
-            controler.addNotes(txtWord.getText());
-            //set graphis btnotes
+            if (!controler.hasNotes(txtWord.getText().trim())) {
+                controler.addNotes(txtWord.getText());
+                btnNotes.setStyle("-fx-background-image: url('/view/image/noted.png');");
+            }
         });
 
         //when click edit
@@ -89,6 +92,8 @@ public class SearchingPane implements Popup, ShowText, UpdateListview {
             txtDefinition.setVisible(true);
 
         });
+
+
         //click pane
 
         //oprn about us creen
@@ -138,6 +143,11 @@ public class SearchingPane implements Popup, ShowText, UpdateListview {
         btnSpeck.setVisible(isVisible);
         btnEdit.setVisible(isVisible);
         btnNotes.setVisible(isVisible);
+        if (isVisible && controler.hasNotes(txtWord.getText())) {
+            btnNotes.setStyle("-fx-background-image: url('/view/image/noted.png');");
+        } else {
+            btnNotes.setStyle("-fx-background-image: url('/view/image/Note.png');");
+        }
     }
 
     @Override
@@ -168,6 +178,8 @@ public class SearchingPane implements Popup, ShowText, UpdateListview {
             entriesPopup.show(txtWord, Side.BOTTOM, 24, 0); //position of popup
         }
     }
+
+
 
     @Override
     public void showExplain(String text) {

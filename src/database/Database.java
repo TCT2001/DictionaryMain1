@@ -59,21 +59,4 @@ public class Database {
         return connection;
     }
 
-//    public static void main(String[] args) {
-//        String sqlCommand = "DROP TABLE IF EXISTS 'notes'";
-//        String sqlCommand2 = "DROP TABLE IF EXISTS 'histories'";
-//
-//        Statement stmt = null;
-//        try {
-//            connection.setAutoCommit(false);
-//            stmt = connection.createStatement();
-//            stmt.executeUpdate(sqlCommand);
-//            stmt.executeUpdate(sqlCommand2);
-//            connection.commit();
-//            connection.close();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
 }

@@ -116,5 +116,9 @@ public class Controler {
         return dictionaryDAO.getExplain(target);
     }
 
+    public boolean hasNotes(String word){
+        return dictionaryDAO.isExists(word,true);
+    }
+
 
 }
