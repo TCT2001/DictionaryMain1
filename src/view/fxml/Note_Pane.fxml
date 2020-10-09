@@ -1,32 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="325.0" prefWidth="574.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0"
+            prefWidth="574.0"
+            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="view.NotesPane">
     <children>
         <AnchorPane layoutX="-18.0" prefHeight="325.0" prefWidth="582.0">
             <children>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#74a174" height="326.0" layoutY="-1.0" stroke="#74a174" strokeType="INSIDE" width="24.0" />
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#74a174" height="16.0" layoutY="-7.0" stroke="#74a174" strokeType="INSIDE" width="587.0" />
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#74a174" height="16.0" layoutX="1.0" layoutY="309.0" stroke="#74a174" strokeType="INSIDE" width="587.0" />
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#74a174" height="326.0" layoutX="564.0" layoutY="-3.0" stroke="#74a174" strokeType="INSIDE" width="24.0" />
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#74a174" height="323.0" layoutX="219.0" layoutY="1.0" stroke="#74a174" strokeType="INSIDE" width="9.0" />
-            <Text layoutX="24.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hightlight Words" textAlignment="CENTER" wrappingWidth="196.0" />
-            <ListView fx:id="listView" layoutX="24.0" layoutY="38.0" prefHeight="271.0" prefWidth="196.0" />
-            <Text fx:id="textDifinitionInNote" layoutX="236.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="297.3603515625">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Text>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#74a174" height="326.0" layoutY="-1.0" stroke="#74a174"
+                           strokeType="INSIDE" width="24.0"/>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#74a174" height="16.0" layoutY="-7.0" stroke="#74a174"
+                           strokeType="INSIDE" width="587.0"/>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#74a174" height="16.0" layoutX="1.0" layoutY="309.0"
+                           stroke="#74a174" strokeType="INSIDE" width="587.0"/>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#74a174" height="326.0" layoutX="564.0" layoutY="-3.0"
+                           stroke="#74a174" strokeType="INSIDE" width="24.0"/>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#74a174" height="323.0" layoutX="219.0" layoutY="1.0"
+                           stroke="#74a174" strokeType="INSIDE" width="9.0"/>
+                <Text layoutX="24.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hightlight Words"
+                      textAlignment="CENTER" wrappingWidth="196.0"/>
+                <ListView fx:id="lvNotes" layoutX="24.0" layoutY="38.0" prefHeight="271.0" prefWidth="196.0"/>
+                <ScrollPane layoutX="228.0" layoutY="9.0" prefHeight="300.0" prefWidth="337.0">
+                    <content>
+                        <AnchorPane prefHeight="297.0" prefWidth="331.0">
+                            <children>
+                                <Text fx:id="txtTarget" layoutX="11.0" layoutY="18.0" strokeType="OUTSIDE"
+                                      strokeWidth="0.0" wrappingWidth="309.3603515625">
+                                    <font>
+                                        <Font size="14.0"/>
+                                    </font>
+                                </Text>
+                                <Text fx:id="txtDifinition" layoutX="10.0" layoutY="33.0" strokeType="OUTSIDE"
+                                      strokeWidth="0.0" wrappingWidth="311.7294921875"/>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </ScrollPane>
             </children>
         </AnchorPane>
     </children>

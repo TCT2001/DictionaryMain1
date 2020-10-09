@@ -13,6 +13,7 @@ public class Database {
 
     /**
      * create table with first run
+     *
      * @param connection
      */
     private static void createTable(Connection connection) {
@@ -35,6 +36,7 @@ public class Database {
 
     /**
      * colection to database
+     *
      * @return
      */
     public static Connection createNewDatabase() {
@@ -48,7 +50,7 @@ public class Database {
         }
     }
 
-    
+
     public static Connection getDatabase() {
         if (connection == null) {
             connection = createNewDatabase();

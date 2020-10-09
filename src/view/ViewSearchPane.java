@@ -12,7 +12,7 @@ import javafx.scene.text.Text;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class View implements Initializable {
+public class ViewSearchPane implements Initializable {
     @FXML
     private BorderPane borderPane;
     @FXML
@@ -47,7 +47,8 @@ public class View implements Initializable {
         initView();
         SearchingPane.init();
     }
-    private void initView(){
+
+    private void initView() {
         SearchingPane.txtWord = txtWord;
         SearchingPane.txtTarget = txtTarget;
         SearchingPane.txtDefinition = txtDefinition;

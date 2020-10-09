@@ -7,18 +7,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.View">
+<AnchorPane prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: #FFFFFF;"
+            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="view.ViewSearchPane">
     <children>
         <BorderPane fx:id="borderPane" layoutX="114.0" layoutY="55.0" prefHeight="320.0" prefWidth="610.0">
             <center>
                 <AnchorPane prefHeight="325.0" prefWidth="583.0" BorderPane.alignment="CENTER">
                     <children>
-                        <!--                        <TextField fx:id="txtWord" alignment="CENTER" layoutX="24.0" layoutY="6.0"-->
-                        <!--                                   onAction="#txtWordEnter" prefHeight="30.0" prefWidth="195.0">-->
-                        <!--                            <font>-->
-                        <!--                                <Font size="14.0"/>-->
-                        <!--                            </font>-->
-                        <!--                        </TextField>-->
                         <TextField fx:id="txtWord" alignment="CENTER" layoutX="24.0" layoutY="6.0" prefHeight="30.0" prefWidth="195.0">
                             <font>
                                 <Font size="14.0" />

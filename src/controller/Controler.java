@@ -10,13 +10,13 @@ import view.SearchingPane;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
-public class SearchControler {
-    private static SearchControler controler = null;
+public class Controler {
+    private static Controler controler = null;
     private DictionaryDAO dictionaryDAO = new DictionaryDAO();
 
-    public static SearchControler getControler() {
+    public static Controler getControler() {
         if (controler == null) {
-            controler = new SearchControler();
+            controler = new Controler();
         }
         return controler;
     }
@@ -100,12 +100,20 @@ public class SearchControler {
 
     public void updateWord(String target, String explain) {
         if (!explain.equals("")) {
-            dictionaryDAO.updateExplain(target,explain);
+            dictionaryDAO.updateExplain(target, explain);
         }
     }
 
-    public List<String> getListHistory(){
+    public List<String> getListHistory() {
         return dictionaryDAO.getAllWord(false);
+    }
+
+    public List<String> getListNotes() {
+        return dictionaryDAO.getAllWord(true);
+    }
+
+    public String getExplain(String target) {
+        return dictionaryDAO.getExplain(target);
     }
 
 

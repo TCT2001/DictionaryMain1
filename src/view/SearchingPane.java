@@ -1,6 +1,6 @@
 package view;
 
-import controller.SearchControler;
+import controller.Controler;
 import helper.FXML_Loader;
 import helper.Popup;
 import helper.ShowText;
@@ -25,7 +25,7 @@ import java.util.List;
 
 public class SearchingPane implements Popup, ShowText, UpdateListview {
     private static ContextMenu entriesPopup = new ContextMenu();
-    private static SearchControler searchControler = SearchControler.getControler();
+    private static Controler controler = Controler.getControler();
 
     static TextField txtWord;
     static BorderPane borderPane;
@@ -48,25 +48,26 @@ public class SearchingPane implements Popup, ShowText, UpdateListview {
         });
         txtWord.textProperty().addListener((observableValue, oldvalue, newvalue) -> {
             //auto complete text and showPopup text defination
-            searchControler.suggestionsText(newvalue);
-            searchControler.showExplainWord(newvalue);
+            controler.suggestionsText(newvalue);
+            controler.showExplainWord(newvalue);
         });
         //after input text
         txtWord.setOnAction(actionEvent -> {
             //add history or using translate api
-            searchControler.translateWord(txtWord.getText());
+            controler.translateWord(txtWord.getText());
         });
 
         //when click speck
         btnSpeck.setOnAction(actionEvent -> {
             //speck
-            searchControler.speck(txtWord.getText());
+            controler.speck(txtWord.getText());
         });
 
         //when click note
         btnNotes.setOnAction(actionEvent -> {
             //add action
-            searchControler.addNotes(txtWord.getText());
+            controler.addNotes(txtWord.getText());
+            //set graphis btnotes
         });
 
         //when click edit
@@ -81,7 +82,7 @@ public class SearchingPane implements Popup, ShowText, UpdateListview {
         btnSaveEdit.setOnAction(actionEvent -> {
             if (!txtEdit.getText().equals("")) {
                 txtDefinition.setText(txtEdit.getText());
-                searchControler.updateWord(txtTarget.getText(), txtDefinition.getText());
+                controler.updateWord(txtTarget.getText(), txtDefinition.getText());
             }
             btnSaveEdit.setVisible(false);
             txtEdit.setVisible(false);
@@ -125,7 +126,7 @@ public class SearchingPane implements Popup, ShowText, UpdateListview {
 
     private static void fillListView() {
         ObservableList observableList = FXCollections.observableArrayList();
-        observableList.addAll(searchControler.getListHistory());
+        observableList.addAll(controler.getListHistory());
         listViewHistory.setItems(observableList);
         listViewHistory.setCellFactory(stringListView -> {
             return new CellHistory();
@@ -177,6 +178,7 @@ public class SearchingPane implements Popup, ShowText, UpdateListview {
         txtTarget.setText(txtWord.getText());
 
         setVisibleButon(true);
+        //setgraphis btnotes
     }
 
     @Override

@@ -5,8 +5,8 @@ import helper.ShowText;
 import helper.UpdateListview;
 import view.SearchingPane;
 
-public class CellHistory extends Cell{
-    public CellHistory(){
+public class CellHistory extends Cell {
+    public CellHistory() {
         button.setStyle("-fx-background-image: url('/view/image/delete.png');");
     }
 
@@ -20,7 +20,7 @@ public class CellHistory extends Cell{
     protected void actionButtonClick() {
         super.actionButtonClick();
         DictionaryDAO dictionaryDAO = new DictionaryDAO();
-        dictionaryDAO.deleteWord(lastItem,false);
+        dictionaryDAO.deleteWord(lastItem, false);
         UpdateListview updateListview = new SearchingPane();
         updateListview.removeItemInListView(lastItem);
     }

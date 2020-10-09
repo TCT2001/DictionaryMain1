@@ -1,6 +1,5 @@
 package model;
 
-import controller.SearchControler;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,7 +12,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 //        FXMLLoader loader = new FXMLLoader(getClass().getResource());
-//        loader.setController(SearchControler.class);
+//        loader.setController(Controler.class);
         Parent root = FXMLLoader.load(getClass().getResource("../view/fxml/searching_pane.fxml"));
         Scene scene = new Scene(root, 800, 500);
         primaryStage.setTitle("Hello World");
