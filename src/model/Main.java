@@ -16,7 +16,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../view/fxml/searching_pane.fxml"));
         Scene scene = new Scene(root, width, height);
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Dictionary");
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();

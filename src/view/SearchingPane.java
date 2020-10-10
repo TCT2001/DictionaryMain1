@@ -61,7 +61,7 @@ public class SearchingPane implements Popup, ShowText, UpdateListview {
         //when click speck
         btnSpeak.setOnAction(actionEvent -> {
             //speck
-            controller.speck(txtWord.getText());
+            controller.speak(txtWord.getText());
         });
 
         //when click note
@@ -87,6 +87,7 @@ public class SearchingPane implements Popup, ShowText, UpdateListview {
             txtDefinition.setVisible(false);
         });
 
+        btnSaveEdit.setStyle("-fx-background-image: url('/view/image/save.png');");
         //after edit
         btnSaveEdit.setOnAction(actionEvent -> {
             if (!txtEdit.getText().equals("")) {
