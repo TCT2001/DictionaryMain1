@@ -5,14 +5,15 @@ import javafx.application.Platform;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import model.Word;
+import service.TranslateService;
 import view.SearchingPane;
 
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
-public class Controller {
+public class Controller implements ResultTranslator {
     private static Controller controller = null;
-    private final DictionaryDAO dictionaryDAO = new DictionaryDAO();
+    private final static DictionaryDAO dictionaryDAO = new DictionaryDAO();
 
     public static Controller getController() {
         if (controller == null) {
@@ -55,36 +56,18 @@ public class Controller {
             dictionaryDAO.addWord(text, false);
             updateListview.addItemInListView(text);
         } else {
-            Service<Void> service = new Service<Void>() {
-                @Override
-                protected Task<Void> createTask() {
-                    return new Task<Void>() {
-                        @Override
-                        protected Void call() throws Exception {
-                            final CountDownLatch latch = new CountDownLatch(1);
-                            //Platform.runLater(new Runnable() {
-                            Platform.runLater(() -> {
-                                try {
-                                    String explain = Translator.translate(text);
-                                    if (!explain.equals("")) {
-                                        showText.showExplain(explain);
-                                        dictionaryDAO.addWord(new Word(text, explain));
-                                        dictionaryDAO.addWord(text, false);
-                                        updateListview.addItemInListView(text);
-                                    } else {
-                                        showText.showExplain("Network Error !");
-                                    }
-                                } finally {
-                                    latch.countDown();
-                                }
-                            });
-                            latch.await();
-                            return null;
-                        }
-                    };
-                }
-            };
-            service.start();
+            //using api
+            TranslateService translate = new TranslateService(text);
+            translate.start();
+//            String explain = translate.getValue();
+//            if (!explain.equals("")) {
+//                showText.showExplain(explain);
+//                dictionaryDAO.addWord(new Word(text, explain));
+//                dictionaryDAO.addWord(text, false);
+//                updateListview.addItemInListView(text);
+//            } else {
+//                showText.showExplain("Network Error !");
+//            }
         }
     }
 
@@ -122,4 +105,18 @@ public class Controller {
         dictionaryDAO.deleteWord(word,true);
     }
 
+    @Override
+    public void Result(Word word) {
+        ShowText showText = new SearchingPane();
+        UpdateListview updateListview = new SearchingPane();
+        String explain = word.getWord_explain();
+        if (!explain.equals("")) {
+            showText.showExplain(explain);
+            dictionaryDAO.addWord(word);
+            dictionaryDAO.addWord(word.getWord_target(), false);
+            updateListview.addItemInListView(word.getWord_target());
+        } else {
+            showText.showExplain("Network Error !");
+        }
+    }
 }

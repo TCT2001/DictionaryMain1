@@ -17,6 +17,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import service.TranslateService;
 import view.cell.CellHistory;
 
 import java.io.IOException;
@@ -43,6 +44,8 @@ public class SearchingPane implements Popup, ShowText, UpdateListview {
     static Button btnSearchPane;
 
     static void init() {
+        // first using api very long time
+        new TranslateService("!@#firstcallapi").start();
         //while input
         txtWord.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
             entriesPopup.hide();
@@ -55,7 +58,12 @@ public class SearchingPane implements Popup, ShowText, UpdateListview {
         //after input text
         txtWord.setOnAction(actionEvent -> {
             //add history or using translate api
-            controller.translateWord(txtWord.getText());
+            try {
+                controller.translateWord(txtWord.getText());
+            }catch (Exception e) {
+                System.out.println("af" +e.toString());
+            }
+
         });
 
         //when click speck
