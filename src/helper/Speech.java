@@ -7,7 +7,7 @@ import javax.speech.synthesis.SynthesizerModeDesc;
 
 //using jsapi
 public class Speech {
-    public static void speck(String text) {
+    public static void speak(String text) {
         try {
             // Set property as Kevin Dictionary
             System.setProperty(
