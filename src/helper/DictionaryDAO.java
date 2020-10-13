@@ -13,7 +13,6 @@ import java.util.List;
 public class DictionaryDAO {
     private final Connection connection = Database.getDatabase();
 
-
     //dictionary table
 
     /**
