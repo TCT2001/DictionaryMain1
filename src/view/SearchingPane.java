@@ -169,12 +169,12 @@ public class SearchingPane implements Popup, ShowText, UpdateListview {
     }
 
     @Override
-    public void showPopup(List<String> searchResult, String searchReauest) {
+    public void showPopup(List<String> searchResult, String searchRequest) {
         listViewHistory.setVisible(false);
         List<CustomMenuItem> menuItems = new LinkedList<>();
         for (String result : searchResult) {
             Label entryLabel = new Label();
-            entryLabel.setGraphic(Styles.buildTextFlow(result, searchReauest));
+            entryLabel.setGraphic(Styles.buildTextFlow(result, searchRequest));
             entryLabel.setPrefHeight(10);
             CustomMenuItem item = new CustomMenuItem(entryLabel, true);
             menuItems.add(item);

@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface Popup {
     void hidePopup();
-    void showPopup(List<String> searchResult, String searchReauest);
+    void showPopup(List<String> searchResult, String searchRequest);
 }
