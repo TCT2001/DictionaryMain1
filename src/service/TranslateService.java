@@ -24,7 +24,7 @@ public class TranslateService extends Service<String> {
                     return;
                 }
                 if (!res.equals("")) {
-                    ResultTranslator resultTranslator = new Controller();
+                    ResultTranslator resultTranslator = (ResultTranslator) new Controller();
                     resultTranslator.Result(new Word(text,res));
                 }
             }

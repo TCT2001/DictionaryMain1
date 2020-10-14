@@ -4,13 +4,14 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 
 public class Main extends Application {
 
-    private final int width = 786;
-    private final int height = 486;
+    private final int width = 750;
+    private final int height = 500;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -19,6 +20,7 @@ public class Main extends Application {
         primaryStage.setTitle("Dictionary");
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
+        primaryStage.getIcons().add(new Image("/view/image/appIcon.png"));
         primaryStage.show();
     }
 

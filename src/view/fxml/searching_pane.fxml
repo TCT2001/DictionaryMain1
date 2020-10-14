@@ -56,11 +56,17 @@
                             <font>
                                 <Font size="12.0" />
                             </font>
+                            <tooltip>
+                                <Tooltip text="Edit" />
+                            </tooltip>
                         </Button>
                         <Button fx:id="btnNotes" layoutX="518.0" layoutY="12.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="note" stylesheets="@../image/style.css" visible="false">
                             <font>
                                 <Font size="12.0" />
                             </font>
+                            <tooltip>
+                                <Tooltip text="Highlight" />
+                            </tooltip>
                         </Button>
                         <ListView fx:id="listViewHistory" layoutX="24.0" layoutY="35.0" prefHeight="275.0" prefWidth="195.0" />
                     </children>
